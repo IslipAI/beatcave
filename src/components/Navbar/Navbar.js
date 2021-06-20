@@ -1,30 +1,42 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import {ReactComponent as Burger} from '../Icons/menu_white.svg';
+import {CSSTransition} from 'react-transition-group';
+
+function NavbarLink(props){
+    return(
+        <li><Link to={props.to}>{props.text}</Link></li>
+    )
+}
+
+function DropdownIcon(props){
+    const [open, setOpen] = useState(false);
+
+    return (
+        <li className="dropdown-button">
+        <a className="button" onClick={() => setOpen(!open)}>
+            {props.icon}
+        </a>
+        {open}
+        </li>
+    );
+}
 
 
 class Navbar extends Component{
-    state = {clicked: false}
-
-    handleClick = () =>{
-        this.setState({clicked: !this.state.clicked})
-    }
 
     render(){
         return(
             <nav className="navbar-wrapper">
                 <h1 className="logo">BEATCAVE</h1>
                 <ul className="main-links">
-                    <li><Link to="/home">Home</Link></li>
-                    <li><Link to="/beats">Beats</Link></li>
-                    <li><Link to="/events">Events</Link></li>
-                    <li><Link to="/about">About</Link></li>  
+                    <NavbarLink to="/home" text="Home"/>
+                    <NavbarLink to="/beats" text="Beats"/>
+                    <NavbarLink to="/events" text="Events"/>
+                    <NavbarLink to="/about" text="About"/> 
                 </ul>
-                <div className="icons">
-                    <div className ="menuIcon" onClick={this.handleClick}>
-                        <i className={this.state.clicked ? 'fas fa-times' : 'fas fa-bars'}></i>
-                    </div>
-                </div>
+                <DropdownIcon icon={<Burger/>}/>
             </nav>
         )
     }

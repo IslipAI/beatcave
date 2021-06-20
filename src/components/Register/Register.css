@@ -1,5 +1,95 @@
 .register-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000000;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
 }
+
+.logo-register {
+  width: 250px;
+}
+
+.register-form-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  top: 0%;
+  width: 400px;
+  height: 40%;
+  background-color: #282c34;
+  border-radius: 5%;
+}
+
+.register-form-wrapper:hover {
+    filter: brightness(1.2);
+}
+
+.register-text {
+    color: #ffffff;
+    text-align: center;
+    margin-top: 10%;
+  }
+
+.register-firstname-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.register-lastname-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.register-email-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.register-address-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.register-phone-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.register-birthdate-input{
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: 10px;
+}
+
+.register-password-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.register-confirmpassword-input{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.register-button {
+    width: 50%;
+    height: 30px;
+    border-radius: 10%;
+    margin-top: 10px;
+    margin-left: 25%;
+  }
+  
+  
+  
+  
+  
+  

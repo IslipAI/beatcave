@@ -21,31 +21,38 @@
   top: 30px;
 }
 
+
 .main-links li {
   display: inline;
-  padding: 10px;
 }
+
 
 .main-links a {
   color: white;
   text-decoration: none;
+  padding: 10px 20px 10px 20px;
+  margin: 10px;
+  background-color: #282c34;
+  border-radius: 10%;
 }
 
-.icons{
+.main-links a:hover {
+  filter: brightness(1.4);
+}
+
+.dropdown-button {
+  padding: 5px;
   list-style-type: none;
-  margin: 0px;
-  padding: 0px;
-  padding-right: 5%;
   align-self: flex-end;
   position: fixed;
-  top: 30px;
+  top: 20px;
+  right: 2%;
+  background-color: #282c34;
+  border-radius: 50%;
 }
 
-.icons div {
-  display: inline;
-}
 
-.menuIcon {
-  color: white;
+.dropdown-button:hover{
+  filter: brightness(1.4);
 }
 

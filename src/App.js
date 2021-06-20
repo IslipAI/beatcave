@@ -9,6 +9,7 @@ import Events from './components/Events/Events.js';
 import About from './components/About/About.js';
 import Login from './components/Login/Login.js';
 import Register from './components/Register/Register.js';
+import Authentication from './components/Authentication/Authentication.js';
 
 import Navbar from './components/Navbar/Navbar.js';
 
@@ -18,7 +19,9 @@ function App() {
 
   if(!token){
     return(
-      <Login setToken={setToken}/>
+      <div className="wrapper">
+        <Authentication setToken={setToken}/>
+      </div>
     )
   }
 
@@ -38,12 +41,6 @@ function App() {
           </Route>
           <Route path="/about">
             <About/>
-          </Route>
-          <Route path="/login">
-            <Login/>
-          </Route>
-          <Route path="/register">
-            <Register/>
           </Route>
         </Switch>
       </BrowserRouter>
