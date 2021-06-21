@@ -37,47 +37,56 @@
 .register-firstname-input{
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-right: 2px;
 }
 
 .register-lastname-input{
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-left: 2px;
 }
 
 .register-email-input{
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 10px;
+    margin-right: 2px;
 }
 
 .register-address-input{
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 10px;
+    margin-left: 2px;
 }
 
 .register-phone-input{
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 10px;
+    margin-right: 2px;
 }
 
 .register-birthdate-input{
+    width: 172px;
     padding-top: 2px;
     padding-bottom: 2px;
     margin-top: 10px;
+    margin-left: 2px;
 }
 
 .register-password-input{
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 10px;
+    margin-right: 2px;
 }
 
 .register-confirmpassword-input{
     padding-top: 5px;
     padding-bottom: 5px;
     margin-top: 10px;
+    margin-left: 2px;
 }
 
 .register-button {
@@ -86,6 +95,16 @@
     border-radius: 10%;
     margin-top: 10px;
     margin-left: 25%;
+    color: #ffffff;
+    background-color: #000000;
+  }
+
+  .register-login-button {
+    margin-top: 10px;
+    color: #ffffff;
+    background-color: #282c34;
+    cursor: pointer;
+    border: none;
   }
   
   

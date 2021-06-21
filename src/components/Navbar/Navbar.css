@@ -21,11 +21,9 @@
   top: 30px;
 }
 
-
 .main-links li {
   display: inline;
 }
-
 
 .main-links a {
   color: white;
@@ -33,7 +31,7 @@
   padding: 10px 20px 10px 20px;
   margin: 10px;
   background-color: #282c34;
-  border-radius: 10%;
+  border-radius: 5%;
 }
 
 .main-links a:hover {
@@ -51,8 +49,33 @@
   border-radius: 50%;
 }
 
-
-.dropdown-button:hover{
+.dropdown-button:hover {
   filter: brightness(1.4);
 }
 
+.dropdown {
+  position: absolute;
+  top: 68px;
+  right: 50px;
+  width: 300px;
+  background-color: #282c34;
+  border-radius: 5%;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.menu-item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: 5%;
+  padding: 0.5rem;
+}
+
+.menu-item:hover {
+  background-color: #525357;
+}
+
+.menu {
+  width: 100%;
+}

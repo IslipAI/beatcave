@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import useToken from './components/Hooks/UseToken.js';
 
@@ -7,8 +7,6 @@ import Home from './components/Home/Home.js';
 import Beats from './components/Beats/Beats.js';
 import Events from './components/Events/Events.js';
 import About from './components/About/About.js';
-import Login from './components/Login/Login.js';
-import Register from './components/Register/Register.js';
 import Authentication from './components/Authentication/Authentication.js';
 
 import Navbar from './components/Navbar/Navbar.js';

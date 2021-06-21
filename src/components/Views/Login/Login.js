@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import '../Login/Login.css';
-import logo from '../Images/BEATCAVE_WHITE_180.png';
+import logo from '../../Images/BEATCAVE_WHITE_180.png';
 
 async function LoginUser(email, password){
   const urlToFetch = 'http://www.beatcaveapi.com/login/'.concat(email, '/', password);
@@ -35,19 +35,19 @@ export default function Login({setToken, setLogin}){
   }
     return(
       <div className="login-wrapper">
-         <img src={logo} className="logo-login-register"/>
+         <img src={logo} className="logo-login-register" alt="Beatcave Logo"/>
         <div className="login-form-wrapper">
         <form onSubmit={handleSubmit}>
           <h3 className="login-text">Log In</h3>
           <div>
             <input className="login-email-input" type="text" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
             <br/>
-            <input className="login-password-input" type="text" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+            <input className="login-password-input" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} autoComplete="on"/>
             <br/>
             <button className="login-button">Log In</button>
           </div>
         </form>
-        <a className="login-register-link" onClick={() => setLogin(false)}>Don't have an account? Create One.</a>
+        <button className="login-register-button" onClick={() => setLogin(false)}>Don't have an account? Create One.</button>
         </div>
       </div>
     )

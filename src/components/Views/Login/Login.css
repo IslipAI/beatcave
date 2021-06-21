@@ -55,10 +55,14 @@
   height: 30px;
   border-radius: 10%;
   margin-top: 10px;
+  color: #ffffff;
+  background-color: #000000;
 }
 
-.login-register-link {
+.login-register-button {
   margin-top: 10px;
   color: #ffffff;
+  background-color: #282c34;
   cursor: pointer;
+  border: none;
 }

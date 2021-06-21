@@ -1,8 +1,14 @@
-import React, { Component, useState } from 'react';
+import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import {ReactComponent as Burger} from '../Icons/menu_white.svg';
-import {CSSTransition} from 'react-transition-group';
+import {ReactComponent as Burger} from '../Icons/menu_white_24dp.svg';
+import {ReactComponent as Profile} from '../Icons/person_white_24dp.svg';
+import {ReactComponent as Beats} from '../Icons/music_note_white_24dp.svg';
+import {ReactComponent as Money} from '../Icons/attach_money_white_24dp.svg';
+import {ReactComponent as SignOut} from '../Icons/logout_white_24dp.svg';
+
+
+//https://blog.campvanilla.com/reactjs-dropdown-menus-b6e06ae3a8fe <-------- showing drop down tutorial.
 
 function NavbarLink(props){
     return(
@@ -11,22 +17,66 @@ function NavbarLink(props){
 }
 
 function DropdownIcon(props){
-    const [open, setOpen] = useState(false);
-
     return (
         <li className="dropdown-button">
-        <a className="button" onClick={() => setOpen(!open)}>
             {props.icon}
-        </a>
-        {open}
         </li>
     );
 }
 
 
-class Navbar extends Component{
+function Dropdown(props) {
+    return(
+        <div className="dropdown">
+            <div className="menu">
+                <a href="http://localhost:3000/profile" className="menu-item">
+                    <span className="icon-button">{<Profile/>}</span>
+                    Profile
+                </a>
+                <a href="http://localhost:3000/products" className="menu-item">
+                    <span className="icon-button">{<Beats/>}</span>
+                    Beats
+                </a>
+                <a href="http://localhost:3000/purchases" className="menu-item">
+                    <span className="icon-button">{<Money/>}</span>
+                    Purchases
+                </a>
+                <a href="http://localhost:3000/signout" className="menu-item">
+                    <span className="icon-button">{<SignOut/>}</span>
+                    Sign Out
+                </a>
+            </div>
+        </div>
+    )
+        
+    
+}
 
-    render(){
+
+
+class Navbar extends Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            showDropdown: false,
+        }
+    }
+
+    showDropdown(event){
+        event.preventDefault();
+        if(this.state.showDropdown === false){
+            this.setState({ 
+                showDropdown: true,
+            });
+        }else{
+            this.setState({ 
+                showDropdown: false,
+            });
+        }
+    }
+
+    
+    render(props){
         return(
             <nav className="navbar-wrapper">
                 <h1 className="logo">BEATCAVE</h1>
@@ -36,7 +86,19 @@ class Navbar extends Component{
                     <NavbarLink to="/events" text="Events"/>
                     <NavbarLink to="/about" text="About"/> 
                 </ul>
-                <DropdownIcon icon={<Burger/>}/>
+                <a href="ref" className="button" onClick={e => this.showDropdown(e)}>
+                    <DropdownIcon icon={<Burger/>}/>
+                </a>
+
+                {
+                    this.state.showDropdown
+                    ?(
+                        <Dropdown/>
+                    )
+                    :(
+                        null
+                    )
+                }
             </nav>
         )
     }

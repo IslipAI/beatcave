@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import Login from '../Login/Login.js';
-import Register from '../Register/Register.js';
+import Login from '../Views/Login/Login.js';
+import Register from '../Views/Register/Register.js';
 
 export default function Authentication({setToken}){
 
