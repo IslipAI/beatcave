@@ -4,7 +4,7 @@ import useToken from './components/Hooks/UseToken.js';
 
 import './App.css';
 import Home from './components/Home/Home.js';
-import Beats from './components/Beats/Beats.js';
+import Beats from './components/Views/Beats/Beats.js';
 import Events from './components/Events/Events.js';
 import About from './components/About/About.js';
 import Authentication from './components/Authentication/Authentication.js';

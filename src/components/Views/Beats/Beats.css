@@ -1,0 +1,26 @@
+.beats-wrapper {
+  display: flex;
+  background-color: blue;
+  justify-content: center;
+  height: 100vh;
+}
+
+.beats-left-wrapper {
+  background-color: cadetblue;
+  display: flex;
+  width: 20%;
+  justify-content: center;
+}
+
+.beats-right-wrapper {
+  background-color: yellow;
+  display: flex;
+  width: 80%;
+  justify-content: center;
+}
+
+.filter-list{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
