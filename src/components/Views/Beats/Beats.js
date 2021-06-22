@@ -5,8 +5,8 @@ import '../Beats/Beats.css';
 
 function GenreFilter(){
   return(
-    <div className="genre-filter">
-      <select name="genre" id="genre">
+    <div className="genre-filter-wrapper">
+      <select name="genre" id="genre" className="genre-filter">
         <option value="" disabled selected>Genre</option>
         <optgroup label="HIP HOP / R&B"></optgroup>
         <option value="volvo">Hip Hop</option>
@@ -37,8 +37,8 @@ function GenreFilter(){
 
 function DownloadsFilter(){
   return(
-    <div className="genre-filter">
-      <select name="cars" id="cars">
+    <div className="downloads-filter-wrapper">
+      <select name="cars" id="cars" className="downloads-filter">
         <option value="" disabled selected>Downloads</option>
         <option value="volvo">High to Low</option>
         <option value="saab">Low to High</option>
@@ -49,8 +49,8 @@ function DownloadsFilter(){
 
 function PriceFilter(){
   return(
-    <div className="genre-filter">
-      <select name="genre" id="genre">
+    <div className="price-filter-wrapper">
+      <select name="genre" id="genre" className="price-filter">
         <option value="" disabled selected>Price</option>
         <option value="volvo">High to Low</option>
         <option value="saab">Low to High</option>
@@ -61,7 +61,7 @@ function PriceFilter(){
 
 function BpmFilter(){
   return(
-    <div className="genre-filter">
+    <div className="bpm-filter-wrapper">
       <input type="range" min="1" max="200" class="slider" id="myRange"/>
     </div>
   )

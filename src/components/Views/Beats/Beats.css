@@ -31,3 +31,27 @@
   width: 800px;
   z-index: -50;
 }
+
+.genre-filter-wrapper{
+  margin-top: 5px;
+}
+
+.genre-filter{
+  width: 100%;
+}
+
+.downloads-filter-wrapper{
+  margin-top: 5px;
+}
+
+.downloads-filter{
+  width: 100%;
+}
+
+.price-filter-wrapper{
+  margin-top: 5px;
+}
+
+.price-filter{
+  width: 100%;
+}

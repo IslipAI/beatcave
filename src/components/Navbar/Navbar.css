@@ -73,6 +73,9 @@
   align-items: center;
   border-radius: 5%;
   padding: 0.5rem;
+  margin: 2px;
+  background-color: #282c34;
+  filter: brightness(0.8);
 }
 
 .menu-item:hover {

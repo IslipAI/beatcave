@@ -81,10 +81,10 @@ class Navbar extends Component{
             <nav className="navbar-wrapper">
                 <h1 className="logo">BEATCAVE</h1>
                 <ul className="main-links">
-                    <NavbarLink to="/home" text="Home"/>
-                    <NavbarLink to="/beats" text="Beats"/>
-                    <NavbarLink to="/events" text="Events"/>
-                    <NavbarLink to="/about" text="About"/> 
+                    <NavbarLink to="/home" text="HOME"/>
+                    <NavbarLink to="/beats" text="BEATS"/>
+                    <NavbarLink to="/events" text="EVENTS"/>
+                    <NavbarLink to="/about" text="ABOUT"/> 
                 </ul>
                 <a href="ref" className="button" onClick={e => this.showDropdown(e)}>
                     <DropdownIcon icon={<Burger/>}/>
