@@ -24,3 +24,10 @@
     margin: 0;
     padding: 0;
 }
+
+.beats-audio-player{
+  justify-content: center;
+  margin-top: 5px;
+  width: 800px;
+  z-index: -50;
+}

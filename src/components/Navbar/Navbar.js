@@ -35,7 +35,7 @@ function Dropdown(props) {
                 </a>
                 <a href="http://localhost:3000/products" className="menu-item">
                     <span className="icon-button">{<Beats/>}</span>
-                    Beats
+                    Products
                 </a>
                 <a href="http://localhost:3000/purchases" className="menu-item">
                     <span className="icon-button">{<Money/>}</span>
