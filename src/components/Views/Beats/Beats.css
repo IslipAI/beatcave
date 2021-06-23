@@ -1,57 +1,115 @@
 .beats-wrapper {
+  position: fixed;
   display: flex;
-  background-color: blue;
   justify-content: center;
   height: 100vh;
+  width: 100vw;
 }
 
 .beats-left-wrapper {
-  background-color: cadetblue;
   display: flex;
   width: 20%;
   justify-content: center;
 }
 
 .beats-right-wrapper {
-  background-color: yellow;
   display: flex;
   width: 80%;
   justify-content: center;
 }
 
-.filter-list{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.filter-list {
+  height: fit-content;
+  list-style-type: none;
+  margin: 200px;
+  padding: 0;
 }
 
-.beats-audio-player{
+.beats-audio-player {
   justify-content: center;
   margin-top: 5px;
-  width: 800px;
+  width: 100%;
   z-index: -50;
 }
 
-.genre-filter-wrapper{
+.genre-filter-wrapper {
   margin-top: 5px;
 }
 
-.genre-filter{
+.genre-filter {
   width: 100%;
 }
 
-.downloads-filter-wrapper{
+.downloads-filter-wrapper {
   margin-top: 5px;
 }
 
-.downloads-filter{
+.downloads-filter {
   width: 100%;
 }
 
-.price-filter-wrapper{
+.price-filter-wrapper {
   margin-top: 5px;
 }
 
-.price-filter{
+.price-filter {
   width: 100%;
 }
+
+.bpm-filter-wrapper {
+  margin-top: 5px;
+}
+
+.bpm-filter {
+  width: 100%;
+}
+
+.key-filter-wrapper {
+  margin-top: 5px;
+}
+
+.key-filter {
+  width: 100%;
+}
+
+.filter-button{
+  width: 100%;
+  height: 30px;
+  border-radius: 10%;
+  margin-top: 10px;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+
+/* .rhap_additional-controls{
+  display: none;
+} */
+
+.beat-wrapper{
+  background-color: #000000;
+  margin: 5px;
+  padding: 10px 10px 10px 10px;
+  display: flex;
+  width: 80%;
+}
+
+.beat-content-wrapper{
+  width: 20%;
+}
+
+.beat-player-wrapper{
+  width: 80%;
+}
+
+.beats-profile-picture{
+  width: 30%;
+}
+
+.beats-title{
+  width: 80%;
+  text-align: center;
+}
+
+
+

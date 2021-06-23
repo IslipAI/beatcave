@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../Beats/Beats.css';
+import profilepicture from '../../Images/blank-profile-picture.png';
 
 function GenreFilter(){
   return(
@@ -62,15 +63,15 @@ function PriceFilter(){
 function BpmFilter(){
   return(
     <div className="bpm-filter-wrapper">
-      <input type="range" min="1" max="200" class="slider" id="myRange"/>
+      <input className="bpm-filter" type="range" min="1" max="200" id="myRange"/>
     </div>
   )
 }
 
 function KeyFilter(){
   return(
-    <div className="key-filter">
-      <select name="cars" id="cars">
+    <div className="key-filter-wrapper">
+      <select name="cars" id="cars" className="key-filter">
         <option value="" disabled selected>Key</option>
         <option value="volvo">Volvo</option>
         <option value="saab">Saab</option>
@@ -90,7 +91,7 @@ function Filters(){
       <PriceFilter/>
       <BpmFilter/>
       <KeyFilter/>
-      <button>Search</button>
+      <button className="filter-button">Search</button>
     </ul>
   )
 }
@@ -133,13 +134,19 @@ export default class Beats extends Component{
   RenderBeats = (beats) => {
     return beats.map((soundObj, index) =>{
       return(
-        <AudioPlayer
-        className="beats-audio-player"
-          key={index}
-          src={soundObj.mp3path}
-          onPlay={e => console.log("onPlay")}
-          // other props here
-        />
+        <div className="beat-wrapper">
+          <div className="beat-content-wrapper">
+            <img src={profilepicture} className="beats-profile-picture" alt="Beatseller profile picture"/>
+          </div>
+
+          <div className="beat-player-wrapper">
+          <AudioPlayer
+          className="beats-audio-player"
+            key={index}
+            src={soundObj.mp3path}
+            onPlay={e => console.log("onPlay")}/>
+          </div>
+        </div>
       )
     })
   }
@@ -155,7 +162,7 @@ export default class Beats extends Component{
         <div className="beats-right-wrapper">
           <div className="beats-container">
             <ul>
-              <h1>Welcome to BeatCave</h1>
+              <h1 className="beats-title">Welcome to BeatCave</h1>
               {this.RenderBeats(beats)}
             </ul>
           </div>
