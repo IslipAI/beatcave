@@ -136,7 +136,7 @@ export default class Beats extends Component{
       return(
         <div className="beat-wrapper">
           <div className="beat-content-wrapper">
-            <img src={profilepicture} className="beats-profile-picture" alt="Beatseller profile picture"/>
+            <img src={profilepicture} className="beats-profile-picture" alt="Beatseller"/>
           </div>
 
           <div className="beat-player-wrapper">

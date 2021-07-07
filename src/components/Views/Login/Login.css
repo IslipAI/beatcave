@@ -6,6 +6,7 @@
   position: absolute;
   height: 100vh;
   width: 100vw;
+  z-index: 100;
 }
 
 .logo-login-register {
@@ -65,4 +66,8 @@
   background-color: #282c34;
   cursor: pointer;
   border: none;
+}
+
+.FDS{
+  height: 100vh;
 }
