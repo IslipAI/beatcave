@@ -4,14 +4,12 @@ import '../Login/Login.css';
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
 
 async function LoginUser(email, password){
-  const urlToFetch = 'http://www.beatcaveapi.com/login/'.concat(email, '/', password);
+  const urlToFetch = 'http://www.beatcaveapi.com/users/login/'.concat(email, '/', password);
     return await axios.get(urlToFetch).then(
       response =>{
-        if(response.data.elements.length > 0){
-          return response.data.elements[0];
-        }else{
-          return null;
-        }
+          console.log(response.data.elements.toString());
+          var token = response.data.elements;
+          return token;
       }
     ).catch(
       error => {
@@ -20,15 +18,15 @@ async function LoginUser(email, password){
     )
 }
 
-export default function Login({setToken, setLogin}){
+export default function Login({setToken}){
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const token = await LoginUser(email, password)
-    console.log(token)
+    var token = await LoginUser(email, password);
+    //console.log(token);
     if(token != null){
       setToken(token)
     }
@@ -47,7 +45,7 @@ export default function Login({setToken, setLogin}){
             <button className="login-button">Log In</button>
           </div>
         </form>
-        <button className="login-register-button" onClick={() => setLogin(false)}>Don't have an account? Create One.</button>
+        <button className="login-register-button">Don't have an account? Create One.</button>
         </div>
       </div>
     )

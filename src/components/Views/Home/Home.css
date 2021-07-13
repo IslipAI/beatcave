@@ -1,20 +1,21 @@
-.home-wrapper{
-    display: flex;
-    justify-content: center;
+.home-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.home-list{
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+.home-list {
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
 
-.home-logo{
-    width: 100%;
+.home-logo {
+  width: 70%;
 }
 
-.home-slogan{
-    position: relative;
-    top: -80px;
-    text-align: center;
+.home-slogan {
+  position: relative;
+  top: -80px;
+  text-align: center;
 }

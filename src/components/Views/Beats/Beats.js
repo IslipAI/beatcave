@@ -7,27 +7,13 @@ import profilepicture from '../../Images/blank-profile-picture.png';
 function GenreFilter(){
   return(
     <div className="genre-filter-wrapper">
-      <select name="genre" id="genre" className="genre-filter">
-        <option value="" disabled selected>Genre</option>
-        <optgroup label="HIP HOP / R&B"></optgroup>
+      <select name="genre" id="genre" className="genre-filter" defaultValue={'DEFAULT'} >
+        <option value="DEFAULT" disabled>Genre</option>
         <option value="volvo">Hip Hop</option>
         <option value="saab">Trap</option>
-        <option value="mercedes">R&B</option>
-        <option value="audi">Soul</option>
-        <option value="volvo">Reggaeton</option>
-        <option value="saab">Dancehall</option>
-        <option value="mercedes">Moombahton</option>
         <option value="audi">Future Bass</option>
-        <option value="audi">GlitchHop</option>
-        <optgroup label="HOUSE / TECHNO"></optgroup>
         <option value="volvo">Techno</option>
         <option value="saab">House</option>
-        <option value="mercedes">Tech House</option>
-        <option value="audi">Deep House</option>
-        <option value="volvo">Disco</option>
-        <option value="saab">Electro</option>
-        <option value="mercedes">Minimal Techno</option>
-        <option value="audi">Hard Techno</option>
         <option value="audi">UK Garage</option>
         <option value="audi">Progressive House</option>
         <option value="audi">Hardstyle</option>
@@ -39,8 +25,8 @@ function GenreFilter(){
 function DownloadsFilter(){
   return(
     <div className="downloads-filter-wrapper">
-      <select name="cars" id="cars" className="downloads-filter">
-        <option value="" disabled selected>Downloads</option>
+      <select name="cars" id="cars" className="downloads-filter" defaultValue={'DEFAULT'} >
+        <option value="DEFAULT" disabled>Downloads</option>
         <option value="volvo">High to Low</option>
         <option value="saab">Low to High</option>
       </select>
@@ -51,8 +37,8 @@ function DownloadsFilter(){
 function PriceFilter(){
   return(
     <div className="price-filter-wrapper">
-      <select name="genre" id="genre" className="price-filter">
-        <option value="" disabled selected>Price</option>
+      <select name="genre" id="genre" className="price-filter" defaultValue={'DEFAULT'} >
+        <option value="DEFAULT" disabled>Price</option>
         <option value="volvo">High to Low</option>
         <option value="saab">Low to High</option>
       </select>
@@ -71,8 +57,8 @@ function BpmFilter(){
 function KeyFilter(){
   return(
     <div className="key-filter-wrapper">
-      <select name="cars" id="cars" className="key-filter">
-        <option value="" disabled selected>Key</option>
+      <select name="cars" id="cars" className="key-filter" defaultValue={"DEFAULT"} >
+        <option value="DEFAULT" disabled>Key</option>
         <option value="volvo">Volvo</option>
         <option value="saab">Saab</option>
         <option value="mercedes">Mercedes</option>
@@ -134,7 +120,7 @@ export default class Beats extends Component{
   RenderBeats = (beats) => {
     return beats.map((soundObj, index) =>{
       return(
-        <div className="beat-wrapper">
+        <div className="beat-wrapper"  key={index}>
           <div className="beat-content-wrapper">
             <img src={profilepicture} className="beats-profile-picture" alt="Beatseller"/>
           </div>
@@ -152,8 +138,7 @@ export default class Beats extends Component{
   }
 
   render(){
-    const {error, isLoaded, beats} = this.state;
-    const listitems = beats.map((beat) => <li key={beat.id}>{beat.name}</li>);
+    const {beats} = this.state;
     return(
       <div className="beats-wrapper">
         <div className="beats-left-wrapper">

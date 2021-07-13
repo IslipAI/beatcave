@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 import useToken from './components/Hooks/UseToken.js';
 
 import './App.css';
@@ -18,19 +18,20 @@ import Navbar from './components/Navbar/Navbar.js';
 function App() {
   const {token, setToken} = useToken();
 
-  if(!token){
-    return(
-      <div className="wrapper">
-        <Authentication setToken={setToken}/>
-      </div>
-    )
-  }
 
   return (
     <div className="wrapper">
       <BrowserRouter>
         <Navbar/>
         <Switch>
+        <Route
+          exact path="/"
+          render={() => {
+              return (
+                <Redirect to="/home" />
+              )
+            }}
+          />
           <Route path="/home">
             <Home/>
           </Route>
