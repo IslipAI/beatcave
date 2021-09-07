@@ -20,7 +20,7 @@ async function RegisterUser(email, password){
     )
 }
 
-export default function Register({setToken, setLogin}){
+export default function Register({setLogin}){
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [email, setEmail] = useState();
@@ -40,7 +40,6 @@ export default function Register({setToken, setLogin}){
 
     console.log(token)
     if(token != null){
-      setToken(token)
     }
   }
 

@@ -6,9 +6,8 @@ import {ReactComponent as Profile} from '../Icons/person_white_24dp.svg';
 import {ReactComponent as Beats} from '../Icons/music_note_white_24dp.svg';
 import {ReactComponent as Money} from '../Icons/attach_money_white_24dp.svg';
 import {ReactComponent as SignOut} from '../Icons/logout_white_24dp.svg';
+import {ReactComponent as Admin} from '../Icons/admin_24dp.svg';
 
-
-//https://blog.campvanilla.com/reactjs-dropdown-menus-b6e06ae3a8fe <-------- showing drop down tutorial.
 
 function NavbarLink(props){
     return(
@@ -26,30 +25,59 @@ function DropdownIcon(props){
 
 
 function Dropdown(props) {
-    return(
-        <div className="dropdown">
-            <div className="menu">
-                <a href="http://localhost:3000/profile" className="menu-item">
-                    <span className="icon-button">{<Profile/>}</span>
-                    Profile
-                </a>
-                <a href="http://localhost:3000/products" className="menu-item">
-                    <span className="icon-button">{<Beats/>}</span>
-                    Products
-                </a>
-                <a href="http://localhost:3000/purchases" className="menu-item">
-                    <span className="icon-button">{<Money/>}</span>
-                    Purchases
-                </a>
-                <a href="http://localhost:3000/signout" className="menu-item">
-                    <span className="icon-button">{<SignOut/>}</span>
-                    Sign Out
-                </a>
+
+    console.log(props.adminStatus)
+    if(props.adminStatus === true){
+        return(
+            <div className="dropdown">
+                <div className="menu">
+                    <a href="http://localhost:3000/profile" className="menu-item">
+                        <span className="icon-button">{<Profile/>}</span>
+                        Profile
+                    </a>
+                    <a href="http://localhost:3000/products" className="menu-item">
+                        <span className="icon-button">{<Beats/>}</span>
+                        Products
+                    </a>
+                    <a href="http://localhost:3000/purchases" className="menu-item">
+                        <span className="icon-button">{<Money/>}</span>
+                        Purchases
+                    </a>
+                    <a href="http://localhost:3000/admin" className="menu-item">
+                        <span className="icon-button">{<Admin/>}</span>
+                        Admin
+                    </a>
+                    <a href="http://localhost:3000/signout" className="menu-item">
+                        <span className="icon-button">{<SignOut/>}</span>
+                        Sign Out
+                    </a>
+                </div>
             </div>
-        </div>
-    )
-        
-    
+        )
+    }else{
+        return(
+            <div className="dropdown">
+                <div className="menu">
+                    <a href="http://localhost:3000/profile" className="menu-item">
+                        <span className="icon-button">{<Profile/>}</span>
+                        Profile
+                    </a>
+                    <a href="http://localhost:3000/products" className="menu-item">
+                        <span className="icon-button">{<Beats/>}</span>
+                        Products
+                    </a>
+                    <a href="http://localhost:3000/purchases" className="menu-item">
+                        <span className="icon-button">{<Money/>}</span>
+                        Purchases
+                    </a>
+                    <a href="http://localhost:3000/signout" className="menu-item">
+                        <span className="icon-button">{<SignOut/>}</span>
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+        )
+    }
 }
 
 
@@ -59,6 +87,7 @@ class Navbar extends Component{
         super(props);
         this.state = {
             showDropdown: false,
+            admin: false,
         }
     }
 
@@ -75,8 +104,27 @@ class Navbar extends Component{
         }
     }
 
+    componentDidMount(){
+        console.log(this.props.token);
+        var tokenBody = this.props.token.split('.')[1];
+        //console.log(tokenBody);
+
+        var tokenBodyDecoded = Buffer.from(tokenBody, 'base64').toString();
+        //console.log(tokenBodyDecoded);
+
+        const tokenBodyJson = JSON.parse(tokenBodyDecoded);
+        //console.log(tokenBodyJson.admin);
+
+        if(tokenBodyJson.admin === "A"){
+            this.setState({
+                admin: true
+              });
+        }else{
+            this.state.admin = false;
+        }
+    }    
     
-    render(props){
+    render(){
         return(
             <nav className="navbar-wrapper">
                 <h1 className="logo">BEATCAVE</h1>
@@ -93,7 +141,7 @@ class Navbar extends Component{
                 {
                     this.state.showDropdown
                     ?(
-                        <Dropdown/>
+                        <Dropdown adminStatus={this.state.admin}/>
                     )
                     :(
                         null

@@ -4,15 +4,15 @@ import Register from '../Views/Register/Register.js';
 
 export default function Authentication({setToken}){
 
-      const [login, setLogin] = useState(true);
+      var [login, setLogin] = useState(true);
   
       if(login){
           return(
-              <Login setToken={setToken} setLogin={setLogin}/>
+              <Login setLogin={setLogin} setToken={setToken}/>
           )
       }else{
         return(
-            <Register setToken={setToken} setLogin={setLogin}/>
+            <Register setLogin={setLogin}/>
         )
       }
 }

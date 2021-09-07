@@ -1,34 +1,43 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 import '../Login/Login.css';
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
 
-async function LoginUser(email, password){
-  const urlToFetch = 'http://www.beatcaveapi.com/users/login/'.concat(email, '/', password);
-    return await axios.get(urlToFetch).then(
-      response =>{
-          console.log(response.data.elements.toString());
-          var token = response.data.elements;
-          return token;
-      }
-    ).catch(
-      error => {
-        console.log(error)
-      }
-    )
+
+async function callLogin(email, password){
+
+  const requestOptions = {
+    method: 'POST',
+    headers: 
+    { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, password: password })
+  }
+
+  var token = await fetch('http://localhost:8000/users/login/', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          //console.log(data.elements)
+          return data.elements;
+        })
+        .catch(
+          error => {
+            console.log(error)
+          }
+        )
+  return token;
+
 }
 
-export default function Login({setToken}){
+export default function Login({setLogin, setToken}){
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
 
   const handleSubmit = async e => {
     e.preventDefault();
-    var token = await LoginUser(email, password);
+    var token = await callLogin(email, password);
     //console.log(token);
-    if(token != null){
-      setToken(token)
+    if(token !== "User Doesn't Exist"){
+      setToken(token);
     }
   }
     return(
@@ -45,8 +54,9 @@ export default function Login({setToken}){
             <button className="login-button">Log In</button>
           </div>
         </form>
-        <button className="login-register-button">Don't have an account? Create One.</button>
+        <button className="register-login-button" onClick={() => setLogin(true)}>Don't have an account? Create One.</button>
         </div>
       </div>
     )
   }
+
