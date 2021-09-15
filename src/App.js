@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
-import useToken from './components/Hooks/UseToken.js';
 
 import './App.css';
 import Home from './components/Views/Home/Home.js';
@@ -10,58 +9,92 @@ import About from './components/Views/About/About.js';
 import Profile from './components/Views/Profile/Profile.js';
 import Products from './components/Views/Products/Products.js';
 import Purchases from './components/Views/Purchases/Purchases.js';
-import Authentication from './components/Authentication/Authentication.js';
+import Authentication from './components/Views/Authentication/Authentication.js';
 
 import Navbar from './components/Navbar/Navbar.js';
 
-function App() {
-  const [token, setToken] = useState();
+export default class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      loggedInStatus: "NOT_LOGGED_IN",
+      token: ""
+    }
 
-  if(!token) {
-    return <Authentication setToken={setToken}/>
+    this.setLoginStatus = this.setLoginStatus.bind(this);
   }
 
-  return (
-    <div className="wrapper">
-      <BrowserRouter>
-        <Navbar token={token}/>
-        <Switch>
-        <Route
-          exact path="/"
-          render={() => {
-              return (
-                <Redirect to="/home" />
-              )
-            }}
-          />
-          <Route path="/home">
-            <Home/>
-          </Route>
-          <Route path="/beats">
-            <Beats/>
-          </Route>
-          <Route path="/events">
-            <Events/>
-          </Route>
-          <Route path="/about">
-            <About/>
-          </Route>
-          <Route path="/profile">
-            <Profile/>
-          </Route>
-          <Route path="/products">
-            <Products/>
-          </Route>
-          <Route path="/purchases">
-            <Purchases/>
-          </Route>
-          <Route path="/admin">
-            <Purchases/>
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
-}
 
-export default App;
+  setLoginStatus(){
+    this.setState({
+      loggedInStatus: "LOGGED_IN"
+    })
+  }
+
+  checkLoginStatus(){
+    const storedToken = localStorage.getItem('token');
+    //console.log(storedToken)
+    if(storedToken != null){
+      this.setState({
+        loggedInStatus : "LOGGED_IN"
+      })
+    }
+  }
+
+  componentDidMount(){
+    this.checkLoginStatus();
+  }
+
+
+  render(){
+    if(this.state.loggedInStatus === "NOT_LOGGED_IN"){
+      return(
+        <Authentication   
+        setLoginStatus={this.setLoginStatus} 
+        />
+      )
+    }else{
+      return (
+        <div className="wrapper">
+          <BrowserRouter>
+            <Navbar/>
+            <Switch>
+            <Route
+              exact path="/"
+              render={() => {
+                  return (
+                    <Redirect to="/home" />
+                  )
+                }}
+              />
+              <Route path="/home">
+                <Home/>
+              </Route>
+              <Route path="/beats">
+                <Beats/>
+              </Route>
+              <Route path="/events">
+                <Events/>
+              </Route>
+              <Route path="/about">
+                <About/>
+              </Route>
+              <Route path="/profile">
+                <Profile/>
+              </Route>
+              <Route path="/products">
+                <Products/>
+              </Route>
+              <Route path="/purchases">
+                <Purchases/>
+              </Route>
+              <Route path="/admin">
+                <Purchases/>
+              </Route>
+            </Switch>
+          </BrowserRouter>
+        </div>
+      );
+    }
+  }
+}

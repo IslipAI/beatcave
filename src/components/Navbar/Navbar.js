@@ -86,10 +86,12 @@ class Navbar extends Component{
     constructor(props){
         super(props);
         this.state = {
+            token: "",
             showDropdown: false,
             admin: false,
         }
     }
+
 
     showDropdown(event){
         event.preventDefault();
@@ -104,25 +106,33 @@ class Navbar extends Component{
         }
     }
 
-    componentDidMount(){
-        console.log(this.props.token);
-        var tokenBody = this.props.token.split('.')[1];
-        //console.log(tokenBody);
+    checkAdmin(){
+        const storedToken = localStorage.getItem('token');
+        if(storedToken != null){
+            var tokenBody = storedToken.split('.')[1];
+            //console.log(tokenBody);
 
-        var tokenBodyDecoded = Buffer.from(tokenBody, 'base64').toString();
-        //console.log(tokenBodyDecoded);
+            var tokenBodyDecoded = Buffer.from(tokenBody, 'base64').toString();
+            //console.log(tokenBodyDecoded);
 
-        const tokenBodyJson = JSON.parse(tokenBodyDecoded);
-        //console.log(tokenBodyJson.admin);
+            const tokenBodyJson = JSON.parse(tokenBodyDecoded);
+            //console.log(tokenBodyJson.admin);
 
-        if(tokenBodyJson.admin === "A"){
-            this.setState({
-                admin: true
-              });
-        }else{
-            this.state.admin = false;
+            if(tokenBodyJson.admin === "A"){
+                this.setState({
+                    admin: true
+                });
+            }else{
+                this.setState({
+                    admin: false
+                });
+            }
         }
-    }    
+    }
+
+     componentDidMount(){
+        this.checkAdmin();
+    }   
     
     render(){
         return(
