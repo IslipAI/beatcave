@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 
+//function returns the user display populated with user data
 function UserDisplay(props){
     return(
         <div>
@@ -20,6 +21,7 @@ function UserDisplay(props){
     )
 }
 
+
 export default class Profile extends Component {
     constructor(props) {
         super(props);
@@ -34,8 +36,8 @@ export default class Profile extends Component {
       }
 
     //Calls API to get user data by id
-    async getUser(id){
-        await fetch("http://localhost:8000/users/user/" + id.toString() + "/")
+    async fetchUser(id){
+        await fetch("http://www.beatcaveapi.com/users/user/" + id.toString() + "/")
         .then(response => {
             return response.json()
         })
@@ -74,7 +76,7 @@ export default class Profile extends Component {
     componentDidMount(){
         var id = this.getUserId();
         console.log(id)
-        this.getUser(id);
+        this.fetchUser(id);
     }
 
     render() {

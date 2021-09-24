@@ -31,23 +31,23 @@ function Dropdown(props) {
         return(
             <div className="dropdown">
                 <div className="menu">
-                    <a href="http://localhost:3000/profile" className="menu-item">
+                    <a href="profile" className="menu-item">
                         <span className="icon-button">{<Profile/>}</span>
                         Profile
                     </a>
-                    <a href="http://localhost:3000/products" className="menu-item">
+                    <a href="products" className="menu-item">
                         <span className="icon-button">{<Beats/>}</span>
                         Products
                     </a>
-                    <a href="http://localhost:3000/purchases" className="menu-item">
+                    <a href="purchases" className="menu-item">
                         <span className="icon-button">{<Money/>}</span>
                         Purchases
                     </a>
-                    <a href="http://localhost:3000/admin" className="menu-item">
+                    <a href="admin" className="menu-item">
                         <span className="icon-button">{<Admin/>}</span>
                         Admin
                     </a>
-                    <a href="http://localhost:3000/signout" className="menu-item">
+                    <a href="signout" className="menu-item">
                         <span className="icon-button">{<SignOut/>}</span>
                         Sign Out
                     </a>
@@ -58,19 +58,19 @@ function Dropdown(props) {
         return(
             <div className="dropdown">
                 <div className="menu">
-                    <a href="http://localhost:3000/profile" className="menu-item">
+                    <a href="profile" className="menu-item">
                         <span className="icon-button">{<Profile/>}</span>
                         Profile
                     </a>
-                    <a href="http://localhost:3000/products" className="menu-item">
+                    <a href="products" className="menu-item">
                         <span className="icon-button">{<Beats/>}</span>
                         Products
                     </a>
-                    <a href="http://localhost:3000/purchases" className="menu-item">
+                    <a href="purchases" className="menu-item">
                         <span className="icon-button">{<Money/>}</span>
                         Purchases
                     </a>
-                    <a href="http://localhost:3000/signout" className="menu-item">
+                    <a href="signout" className="menu-item">
                         <span className="icon-button">{<SignOut/>}</span>
                         Sign Out
                     </a>

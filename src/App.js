@@ -10,6 +10,7 @@ import Profile from './components/Views/Profile/Profile.js';
 import Products from './components/Views/Products/Products.js';
 import Purchases from './components/Views/Purchases/Purchases.js';
 import Authentication from './components/Views/Authentication/Authentication.js';
+import Signout from './components/Views/Signout/Signout';
 
 import Navbar from './components/Navbar/Navbar.js';
 
@@ -90,6 +91,9 @@ export default class App extends Component {
               </Route>
               <Route path="/admin">
                 <Purchases/>
+              </Route>
+              <Route path="/signout">
+                <Signout/>
               </Route>
             </Switch>
           </BrowserRouter>

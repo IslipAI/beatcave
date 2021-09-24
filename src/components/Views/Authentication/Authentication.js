@@ -10,7 +10,7 @@ async function callLogin(email, password){
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email: email, password: password })
   }
-  var token = await fetch('http://localhost:8000/users/login/', requestOptions)
+  var token = await fetch('http://www.beatcaveapi.com/users/login/', requestOptions)
         .then(response => response.json())
         .then(data => {
           //console.log(data.elements)
@@ -40,7 +40,7 @@ async function callRegister(email, password, firstname, lastname, artistname, ph
     })
   }
 
-  var token = await fetch('http://localhost:8000/users/register/', requestOptions)
+  var token = await fetch('http://www.beatcaveapi.com/users/register/', requestOptions)
         .then(response => response.json())
         .then(data => {
           //console.log(data.elements);
