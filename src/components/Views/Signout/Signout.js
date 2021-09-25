@@ -19,6 +19,7 @@ export default class Signout extends React.Component{
       <div className="signout-wrapper">
          <img src={logo} className="logo-login-register" alt="Beatcave Logo"/>
          <h3>Are you sure you want to signout?</h3>
+         <button>Signout</button>
       </div>
     )
   }

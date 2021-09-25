@@ -33,7 +33,7 @@ export default class App extends Component {
   }
 
   checkLoginStatus(){
-    const storedToken = localStorage.getItem('token');
+    const storedToken = sessionStorage.getItem('token');
     //console.log(storedToken)
     if(storedToken != null){
       this.setState({

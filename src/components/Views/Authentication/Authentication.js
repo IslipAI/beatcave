@@ -217,7 +217,7 @@ export default class Authentication extends React.Component{
     var token = await callLogin(email, password);
     //console.log(token);
     if(token !== "User Doesn't Exist"){
-        localStorage.setItem('token', JSON.stringify(token));
+        sessionStorage.setItem('token', JSON.stringify(token));
         this.props.setLoginStatus();
     }
   }
@@ -228,7 +228,7 @@ export default class Authentication extends React.Component{
     if(password === confirmpassword){
       var token = await callRegister(email, password, firstname, lastname, artistname, phonenumber, birthdate);
       if(token !== "User Doesn't Exist"){
-        localStorage.setItem('token', JSON.stringify(token));
+        sessionStorage.setItem('token', JSON.stringify(token));
         this.props.setLoginStatus();
       }
     }else{

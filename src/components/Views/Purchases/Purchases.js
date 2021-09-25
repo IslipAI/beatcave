@@ -49,7 +49,7 @@ export default class Purchases extends Component {
 
           //Returns stored user id.
     getUserId(){
-        const storedToken = localStorage.getItem('token');
+        const storedToken = sessionStorage.getItem('token');
         if(storedToken != null){
             var tokenBody = storedToken.split('.')[1];
             //console.log(tokenBody);
