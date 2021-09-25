@@ -60,10 +60,10 @@ export default class Purchases extends Component {
         }
     }
 
-      componentDidMount(){
-          var id = this.getUserId();
-          this.fetchAPI(id)
-      }
+    componentDidMount(){
+        var id = this.getUserId();
+        this.fetchAPI(id)
+    }
 
     render() {
         return (
