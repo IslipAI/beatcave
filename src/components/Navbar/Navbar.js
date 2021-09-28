@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import {ReactComponent as Burger} from '../Icons/menu_white_24dp.svg';
+import {ReactComponent as AddCart} from '../Icons/shopping_cart_white_24dp.svg';
 import {ReactComponent as Profile} from '../Icons/person_white_24dp.svg';
 import {ReactComponent as Beats} from '../Icons/music_note_white_24dp.svg';
 import {ReactComponent as Money} from '../Icons/attach_money_white_24dp.svg';
@@ -23,9 +24,15 @@ function DropdownIcon(props){
     );
 }
 
+function CartIcon(props){
+    return (
+        <li className="cart-button">
+            {props.icon}
+        </li>
+    );
+}
 
 function Dropdown(props) {
-
     console.log(props.adminStatus)
     if(props.adminStatus === true){
         return(
@@ -143,6 +150,9 @@ class Navbar extends Component{
                     <NavbarLink to="/beats" text="BEATS"/>
                     <NavbarLink to="/events" text="EVENTS"/>
                     <NavbarLink to="/about" text="ABOUT"/> 
+                </ul>
+                <ul className="main-links">
+                    <CartIcon icon={<AddCart/>}/>
                 </ul>
                 <a href="ref" className="button" onClick={e => this.showDropdown(e)}>
                     <DropdownIcon icon={<Burger/>}/>

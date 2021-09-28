@@ -42,7 +42,7 @@
 }
 
 .dropdown-button {
-  padding: 5px;
+  padding: 8px;
   list-style-type: none;
   align-self: flex-end;
   position: fixed;
@@ -53,6 +53,21 @@
 }
 
 .dropdown-button:hover {
+  filter: brightness(1.4);
+}
+
+.cart-button {
+  padding: 8px;
+  list-style-type: none;
+  align-self: flex-end;
+  position: fixed;
+  top: 20px;
+  right: 6%;
+  background-color: #282c34;
+  border-radius: 50%;
+}
+
+.cart-button:hover {
   filter: brightness(1.4);
 }
 

@@ -1,0 +1,42 @@
+.events{
+    display: flex;
+    flex-direction: column;
+}
+
+.eventsTop{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.eventsBottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+
+/*Event Container CSS*/
+.eventContainer{
+    background-color: black;
+    padding: 3%;
+    width: 15%;
+    border-radius: 25px;
+}
+
+.eventContainer h4{
+    color: white;
+}
+
+.eventContainer p{
+    color: white;
+}
+
+.eventsAddCartButton{
+    position: relative;
+    margin: 10px;
+}
+
+.eventsAddCartButton:hover{
+    color:yellow;
+}

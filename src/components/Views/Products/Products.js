@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-async function PostEvent(name){
+async function PostEvent(name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime){
     console.log("EVENT POST REQUEST!")
     const requestOptions = {
       method: 'POST',
@@ -8,8 +8,25 @@ async function PostEvent(name){
       { 'Content-Type': 'application/json' },
       body: JSON.stringify({ 
           name: name,
+          totaltickets: totaltickets, 
+          venue: venuename,
+          venueaddress: venueaddress,
+          city: city,
+          price: price,
+          description: description, 
+          date: date,
+          starttime: starttime,
+          endtime:endtime
       })
     }
+
+    await fetch('http://www.beatcaveapi.com/events/addevent/', requestOptions)
+        .then(response => console.log(response))
+        .catch(
+          error => {
+            console.log(error)
+          }
+        )
 }
 async function PostBeat(){
     console.log("BEAT POST REQUEST!")
@@ -62,7 +79,7 @@ function EventUploadForm(props){
             <br/>
             <input 
                 type="number" 
-                name="tickets"
+                name="totaltickets"
                 id="tickets" 
                 min="0" max="1000" 
                 placeholder="Tickets"
@@ -160,7 +177,7 @@ function EventUploadForm(props){
                 <option value="12AM">12AM</option>
             </select>
             <br/>
-            <button>Submit</button>
+            <button type="submit">Submit</button>
             </form>
         </div>
     )
@@ -201,7 +218,7 @@ export default class Products extends Component{
             admin: false,
             showForm: "beats",
             name: "", 
-            tickets: 0,
+            totaltickets: 0,
             venuename: "", 
             venueaddress: "", 
             city: "",
@@ -294,11 +311,11 @@ export default class Products extends Component{
 
     uploadProduct(e){
         e.preventDefault();
-        const {name} = this.state;
+        const {name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime} = this.state;
         if(this.state.showForm === "beats"){
             PostBeat();
         }else{
-            PostEvent();
+            PostEvent(name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime);
         }
 
     }
