@@ -37,7 +37,7 @@ export default class Profile extends Component {
 
     //Calls API to get user data by id
     async fetchUser(id){
-        await fetch("http://www.beatcaveapi.com/users/user/" + id.toString() + "/")
+        await fetch("https://www.beatcaveapi.com/users/user/" + id.toString() + "/")
         .then(response => {
             return response.json()
         })
