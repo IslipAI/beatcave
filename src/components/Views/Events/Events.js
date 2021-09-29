@@ -34,7 +34,7 @@ export default class Events extends Component{
 
   //Calls API to get user products by id
   async fetchAPI(){
-      await fetch("http://www.beatcaveapi.com/events/")
+      await fetch("https://www.beatcaveapi.com/events/")
       .then(response => {
           return response.json()
       })

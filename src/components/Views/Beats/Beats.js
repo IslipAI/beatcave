@@ -93,7 +93,7 @@ export default class Beats extends Component{
   }
 
   async fetchAPI(){
-    await fetch('http://www.beatcaveapi.com/beats')
+    await fetch('https://www.beatcaveapi.com/beats')
     .then(res => res.json())
     .then(
         (result) => {

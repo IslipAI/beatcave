@@ -20,7 +20,7 @@ async function PostEvent(name, totaltickets, venuename, venueaddress, city, pric
       })
     }
 
-    await fetch('http://www.beatcaveapi.com/events/addevent/', requestOptions)
+    await fetch('https://www.beatcaveapi.com/events/addevent/', requestOptions)
         .then(response => console.log(response))
         .catch(
           error => {
