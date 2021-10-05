@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-
+import '../Profile/Profile.css';
+import profilepicture from '../../Images/blank-profile-picture.png';
 
 //function returns the user display populated with user data
 function UserDisplay(props){
     return(
-        <div>
-            <h1>Profile</h1>
+        <div className="profile-display">
+            <h1 className="profile-view-title">Profile</h1>
+            <img src={profilepicture} className="profile-profile-picture" alt="Profile picture"/>
+            <br/>
             <input type="text" defaultValue={props.email}/>
              <br/>
              <input type="text" defaultValue={props.firstname}/>
@@ -88,14 +91,16 @@ export default class Profile extends Component {
         var birthdate = this.state.birthdate;
 
         return (
-            <UserDisplay 
-            email={email}
-            firstname={firstname}
-            lastname={lastname}
-            artistname={artistname}
-            phonenumber={phonenumber}
-            birthdate={birthdate}
-            />
+            <div className="profile-wrapper">
+                 <UserDisplay 
+                    email={email}
+                    firstname={firstname}
+                    lastname={lastname}
+                    artistname={artistname}
+                    phonenumber={phonenumber}
+                    birthdate={birthdate}
+                />
+            </div>
         )
     }
 }
