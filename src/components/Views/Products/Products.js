@@ -327,7 +327,7 @@ export default class Products extends Component{
 
     //Calls API to get user products by id
     async fetchAPI(id){
-        await fetch("http://www.beatcaveapi.com/users/user/products/" + id.toString() + "/")
+        await fetch("https://www.beatcaveapi.com/users/user/products/" + id.toString() + "/")
         .then(response => {
             return response.json()
         })
