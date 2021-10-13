@@ -2,21 +2,21 @@ import React, {Component, useState} from 'react';
 import {uploadFile} from 'react-s3';
 import '../Products/Products.css';
 
-//S3 SECRET VARIABLES.
-const {REACT_APP_ACCESS_KEY} = process.env;
-const {REACT_APP_SECRET_KEY} = process.env;
-const {REACT_APP_BUCKET_NAME} = process.env;
-const {REACT_APP_DIR_NAME} = process.env;
-const {REACT_APP_REGION} = process.env;
+// //S3 SECRET VARIABLES.
+// const {REACT_APP_ACCESS_KEY} = process.env;
+// const {REACT_APP_SECRET_KEY} = process.env;
+// const {REACT_APP_BUCKET_NAME} = process.env;
+// const {REACT_APP_DIR_NAME} = process.env;
+// const {REACT_APP_REGION} = process.env;
 
-//S3 UPLOAD CONFIG.
-const config = {
-    bucketName: REACT_APP_BUCKET_NAME,
-    dirName: REACT_APP_DIR_NAME,
-    region: REACT_APP_REGION,
-    accessKeyId: REACT_APP_ACCESS_KEY, 
-    secretAccessKey: REACT_APP_SECRET_KEY,
-}
+// //S3 UPLOAD CONFIG.
+// const config = {
+//     bucketName: REACT_APP_BUCKET_NAME,
+//     dirName: REACT_APP_DIR_NAME,
+//     region: REACT_APP_REGION,
+//     accessKeyId: REACT_APP_ACCESS_KEY, 
+//     secretAccessKey: REACT_APP_SECRET_KEY,
+// }
 
 //Function sends post request to BEATCAVEAPI to add an event.
 async function PostEvent(name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime){
@@ -283,7 +283,7 @@ function UploadForm(props){
 }
 
 function UploadedProductsDisplay(props){
-    console.log(props.products[0])
+    //console.log(props.products[0])
     return props.products.map((products, index) =>{
         return(
           <div className="product-container"  key={index}>
@@ -319,6 +319,11 @@ export default class Products extends Component{
             key: "",
             genre: '',
             bpm: 0,
+            bucket: '',
+            directory: '',
+            region: '',
+            access: '',
+            secret: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.uploadProduct = this.uploadProduct.bind(this);
@@ -331,22 +336,35 @@ export default class Products extends Component{
         .then(response => {
             return response.json()
         })
-        .then(
-            (result) => {
+        .then((result) => {
                 this.setState({
                     isLoaded : true,
                     products: result.elements
                 });
-                console.log(result.elements);
-    
-            },
-            (error) =>{
+                //console.log(result.elements);
+            },(error) =>{
                 this.setState({
                     isLoaded: true, 
                     error
                 });
             }
         )
+
+        await fetch('https://www.beatcaveapi.com/users/user/aws/access', {mode: 'cors'},)
+        .then((response) => {
+            return response.json();
+        })
+        .then((result)=>{
+            console.log(result);
+            this.setState({
+                bucket: result.elements[0].bucketname,
+                directory: result.elements[0].directory,
+                region: result.elements[0].region,
+                access: result.elements[0].access,
+                secret: result.elements[0].private,
+            });
+            console.log(this.state.directory);
+        })
     }
 
 
@@ -409,7 +427,18 @@ export default class Products extends Component{
     handleUpload = async (file) => {
         const {userid, beatname, 
             key, genre, bpm, 
-            description, price} = this.state;
+            description, price, bucket, 
+            directory, region, 
+            access, secret} = this.state;
+
+        //S3 UPLOAD CONFIG.
+        const config = {
+            bucketName: bucket,
+            dirName: directory,
+            region: region,
+            accessKeyId: access, 
+            secretAccessKey: secret,
+        }
 
         uploadFile(file, config)
             .then(async function(data){
