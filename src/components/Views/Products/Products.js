@@ -487,12 +487,21 @@ export default class Products extends Component{
             )
         }else{
             return(
-                <div>
-                    <h1>Products</h1>
+                <div className="products-wrapper">
+                <div className="products-left-wrapper">
                     <h2>Selling On The Cave?</h2>
-                    <UploadForm/>
-                    {/* <UploadedProductsDisplay products={this.state.products}/> */}
+                    <UploadForm 
+                        showForm={this.state.showForm} 
+                        handleChange={this.handleChange} 
+                        uploadProduct={this.uploadProduct} 
+                        handleUpload={this.handleUpload}
+                    />  
                 </div>
+                <div className="products-right-wrapper">
+                    <h2>Products</h2>
+                    <UploadedProductsDisplay products={this.state.products}/>
+                </div>
+            </div>
             )
         }
     }
