@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
+//Import Views
 import './App.css';
 import Home from './components/Views/Home/Home.js';
 import Beats from './components/Views/Beats/Beats.js';
@@ -9,11 +10,12 @@ import About from './components/Views/About/About.js';
 import Profile from './components/Views/Profile/Profile.js';
 import Products from './components/Views/Products/Products.js';
 import Purchases from './components/Views/Purchases/Purchases.js';
+import Cart from './components/Views/Cart/Cart.js';
 import Authentication from './components/Views/Authentication/Authentication.js';
 import Signout from './components/Views/Signout/Signout';
-
 import Navbar from './components/Navbar/Navbar.js';
 
+//Main App Component
 export default class App extends Component {
   constructor(){
     super();
@@ -88,6 +90,9 @@ export default class App extends Component {
               </Route>
               <Route path="/purchases">
                 <Purchases/>
+              </Route>
+              <Route path="/cart">
+                <Cart/>
               </Route>
               <Route path="/admin">
                 <Purchases/>

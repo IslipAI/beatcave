@@ -8,6 +8,7 @@ import {ReactComponent as Beats} from '../Icons/music_note_white_24dp.svg';
 import {ReactComponent as Money} from '../Icons/attach_money_white_24dp.svg';
 import {ReactComponent as SignOut} from '../Icons/logout_white_24dp.svg';
 import {ReactComponent as Admin} from '../Icons/admin_24dp.svg';
+import Cart from '../Views/Cart/Cart';
 
 
 function NavbarLink(props){
@@ -24,13 +25,14 @@ function DropdownIcon(props){
     );
 }
 
-function CartIcon(props){
-    return (
-        <li className="cart-button">
-            {props.icon}
-        </li>
-    );
-}
+//NEEDS WORK
+// function CartIcon(props){
+//     return (
+//         <li className="cart-button">
+//             <Link className='testclass' to='/cart'>{props.icon}</Link>
+//         </li>
+//     );
+// }
 
 function Dropdown(props) {
     console.log(props.adminStatus)
@@ -49,6 +51,10 @@ function Dropdown(props) {
                     <a href="purchases" className="menu-item">
                         <span className="icon-button">{<Money/>}</span>
                         Purchases
+                    </a>
+                    <a href="cart" className="menu-item">
+                        <span className="icon-button">{<AddCart/>}</span>
+                        Cart
                     </a>
                     <a href="admin" className="menu-item">
                         <span className="icon-button">{<Admin/>}</span>
@@ -76,6 +82,10 @@ function Dropdown(props) {
                     <a href="purchases" className="menu-item">
                         <span className="icon-button">{<Money/>}</span>
                         Purchases
+                    </a>
+                    <a href="cart" className="menu-item">
+                        <span className="icon-button">{<AddCart/>}</span>
+                        Cart
                     </a>
                     <a href="signout" className="menu-item">
                         <span className="icon-button">{<SignOut/>}</span>
@@ -151,9 +161,9 @@ class Navbar extends Component{
                     <NavbarLink to="/events" text="EVENTS"/>
                     <NavbarLink to="/about" text="ABOUT"/> 
                 </ul>
-                <ul className="main-links">
+                {/* <ul className="main-links">
                     <CartIcon icon={<AddCart/>}/>
-                </ul>
+                </ul> */}
                 <a href="ref" className="button" onClick={e => this.showDropdown(e)}>
                     <DropdownIcon icon={<Burger/>}/>
                 </a>

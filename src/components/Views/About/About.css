@@ -1,22 +1,21 @@
 .about-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-  
-  .about-list {
-    text-align: center;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-  }
+  display: flex;
+  justify-content: center;
+}
 
-  .about-beatcave-logo{
-      width: 500px;
-      height: 500px;
-  }
+.about-list {
+  text-align: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
 
-  .about-content-wrapper{
-      background-color: blue;
-      width: 500px;
-      height: 500px;
-  }
+.about-beatcave-logo {
+  width: 500px;
+  height: 500px;
+}
+
+.about-content-wrapper {
+  width: 500px;
+  height: 500px;
+}

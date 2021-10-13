@@ -1,5 +1,24 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
+import {uploadFile} from 'react-s3';
+import '../Products/Products.css';
 
+//S3 SECRET VARIABLES.
+const {REACT_APP_ACCESS_KEY} = process.env;
+const {REACT_APP_SECRET_KEY} = process.env;
+const {REACT_APP_BUCKET_NAME} = process.env;
+const {REACT_APP_DIR_NAME} = process.env;
+const {REACT_APP_REGION} = process.env;
+
+//S3 UPLOAD CONFIG.
+const config = {
+    bucketName: REACT_APP_BUCKET_NAME,
+    dirName: REACT_APP_DIR_NAME,
+    region: REACT_APP_REGION,
+    accessKeyId: REACT_APP_ACCESS_KEY, 
+    secretAccessKey: REACT_APP_SECRET_KEY,
+}
+
+//Function sends post request to BEATCAVEAPI to add an event.
 async function PostEvent(name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime){
     console.log("EVENT POST REQUEST!")
     const requestOptions = {
@@ -28,50 +47,111 @@ async function PostEvent(name, totaltickets, venuename, venueaddress, city, pric
           }
         )
 }
-async function PostBeat(){
+
+//Function sends post request to BEATCAVEAPI to add beat.
+async function PostBeat(id, productname, beatkey, genre, bpm, description, mp3path, price){
     console.log("BEAT POST REQUEST!")
+    console.log(mp3path);
+    const requestOptions = {
+        method: 'POST',
+        headers: 
+        { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            ownerid: id,
+            name: productname,
+            beatkey: beatkey, 
+            genre: genre,
+            bpm: bpm,
+            description: description,
+            mp3path: mp3path,
+            price: price,
+        })
+      }
+
+      await fetch('https://www.beatcaveapi.com/beats/addbeat/', requestOptions)
+      .then(response => console.log(response))
+      .catch(
+        error => {
+          console.log(error)
+        }
+      )
 
 }
 
+//Beat upload form.
 function BeatUploadForm(props){
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const handleFileInput = (e) => {
+        setSelectedFile(e.target.files[0]);
+    }
+
     return(
         <div>
-            <form onSubmit={props.uploadProduct}>
-            <select id="Genre" name="Genre">
+            <form>
+            <select id="Genre" name="genre" onChange={props.handleChange}>
                 <option value="rap">Rap</option>
                 <option value="house">House</option>
                 <option value="dubstep">Dubstep</option>
                 <option value="trance">Trance</option>
             </select>
             <br/>
-            <select id="Key" name="Key">
-                <option value="c">C</option>
-                <option value="d">D</option>
-                <option value="e">E</option>
-                <option value="f">F</option>
+            <select id="Key" name="key" onChange={props.handleChange}>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
             </select>
             <br/>
-            <input type="number" id="Bpm" name="bpm" min="0" max="1000" placeholder="Bpm"/>
+            <input 
+                type="number" 
+                id="Bpm" 
+                name="bpm" 
+                min="0" 
+                max="1000" 
+                placeholder="Bpm"
+                onChange={props.handleChange}
+                required
+            />
             <br/>
-            <input type="text" placeholder="Name"/>
+            <input 
+                type="text" 
+                placeholder="Name"
+                name="beatname"
+                onChange={props.handleChange}
+                required
+            />
             <br/>
-            <textarea id="w3review" name="w3review" rows="5" cols="30" placeholder="Description"/>
+            <textarea 
+                id="Description" 
+                name="description" 
+                rows="5" 
+                cols="30" 
+                placeholder="Description"
+                onChange={props.handleChange}
+                required
+            />
             <br/>
-            <button>Choose File</button>
+            <input 
+                type="file" 
+                onChange={handleFileInput}
+            />
             <br/>
-            <button>Submit</button>
+            <button type="button" onClick={() => props.handleUpload(selectedFile)}>Upload Beat</button>
             </form>
         </div>
     )
 }
 
+//Event Upload form.
 function EventUploadForm(props){
     return(
         <div>
             <form onSubmit={props.uploadProduct}>
             <input 
                 type="text" 
-                name="name"
+                name="productname"
                 placeholder="Name"
                 onChange={props.handleChange}
                 required
@@ -186,11 +266,18 @@ function EventUploadForm(props){
 function UploadForm(props){
     if(props.showForm === "beats"){
         return(
-            <BeatUploadForm handleChange={props.handleChange} uploadProduct={props.uploadProduct}/>
+            <BeatUploadForm 
+                handleUpload={props.handleUpload} 
+                handleChange={props.handleChange} 
+                uploadProduct={props.uploadProduct}
+            />
         )
     }else{
         return(
-            <EventUploadForm handleChange={props.handleChange} uploadProduct={props.uploadProduct}/>
+            <EventUploadForm 
+                handleChange={props.handleChange} 
+                uploadProduct={props.uploadProduct}
+            />
         )
     }
 }
@@ -199,11 +286,11 @@ function UploadedProductsDisplay(props){
     console.log(props.products[0])
     return props.products.map((products, index) =>{
         return(
-          <div className=""  key={index}>
+          <div className="product-container"  key={index}>
               <p>{props.products[index].name}</p>
               <p>{props.products[index].genre}</p>
               <p>{props.products[index].beatkey}</p>
-              <p>${props.products[index].bpm}</p>
+              <p>BPM: {props.products[index].bpm}</p>
           </div>
         )
       })
@@ -214,10 +301,12 @@ export default class Products extends Component{
     constructor(props){
         super(props);
         this.state = {
+            userid: null,
             products: [], 
             admin: false,
             showForm: "beats",
-            name: "", 
+            productname: "", 
+            beatname: "",
             totaltickets: 0,
             venuename: "", 
             venueaddress: "", 
@@ -227,10 +316,14 @@ export default class Products extends Component{
             date: null, 
             starttime: null,
             endtime: null,
+            key: "",
+            genre: '',
+            bpm: 0,
         };
         this.handleChange = this.handleChange.bind(this);
         this.uploadProduct = this.uploadProduct.bind(this);
     }
+    
 
     //Calls API to get user products by id
     async fetchAPI(id){
@@ -257,6 +350,7 @@ export default class Products extends Component{
     }
 
 
+    //Method gets userid.
     getUserId(){
         const storedToken = sessionStorage.getItem('token');
         if(storedToken != null){
@@ -270,6 +364,7 @@ export default class Products extends Component{
     }
 
 
+    //Method checks if you are admin status.
     checkAdmin(){
         const storedToken = sessionStorage.getItem('token');
         if(storedToken != null){
@@ -295,6 +390,7 @@ export default class Products extends Component{
     }
 
 
+    //Changes variables state upon change.
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value,
@@ -305,17 +401,34 @@ export default class Products extends Component{
 
     componentDidMount(){
         var id = this.getUserId();
+        this.setState({userid: id});
         this.fetchAPI(id)
         this.checkAdmin();
     }
 
+    handleUpload = async (file) => {
+        const {userid, beatname, 
+            key, genre, bpm, 
+            description, price} = this.state;
+
+        uploadFile(file, config)
+            .then(async function(data){
+                console.log(data.location);
+                await PostBeat(userid, beatname, 
+                    key, genre, bpm, 
+                    description, data.location.toString(), price);
+            })
+            .catch(err => console.error(err))
+        
+    }
+
     uploadProduct(e){
         e.preventDefault();
-        const {name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime} = this.state;
+        const {productname, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime} = this.state;
         if(this.state.showForm === "beats"){
-            PostBeat();
+            //Do nothing
         }else{
-            PostEvent(name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime);
+            PostEvent(productname, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime);
         }
 
     }
@@ -323,15 +436,24 @@ export default class Products extends Component{
     render(){
         if(this.state.admin === true){
             return(
-                <div>
-                    <h1>Products</h1>
-                    <h2>Selling On The Cave?</h2>
-                    <select onChange={this.handleChange} name="showForm">
-                        <option value="beats">Beats</option>
-                        <option value="events">Events</option>    
-                    </select>
-                    <UploadForm showForm={this.state.showForm} handleChange={this.handleChange} uploadProduct={this.uploadProduct}/>
-                    {/* <UploadedProductsDisplay products={this.state.products}/> */}
+                <div className="products-wrapper">
+                    <div className="products-left-wrapper">
+                        <h2>Selling On The Cave?</h2>
+                        <select onChange={this.handleChange} name="showForm">
+                            <option value="beats">Beats</option>
+                            <option value="events">Events</option>    
+                        </select>
+                        <UploadForm 
+                            showForm={this.state.showForm} 
+                            handleChange={this.handleChange} 
+                            uploadProduct={this.uploadProduct} 
+                            handleUpload={this.handleUpload}
+                        />  
+                    </div>
+                    <div className="products-right-wrapper">
+                        <h2>Products</h2>
+                        <UploadedProductsDisplay products={this.state.products}/>
+                    </div>
                 </div>
             )
         }else{

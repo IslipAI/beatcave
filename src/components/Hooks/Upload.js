@@ -1,6 +1,6 @@
-import React, {useRef} from "react";
+import React, { useRef } from "react";
 
-function Upload(){
+function Upload() {
     const fileinput = useRef();
 
     const handleClick = event => {
@@ -9,12 +9,12 @@ function Upload(){
 
     };
 
-    return(
+    return (
         <>
-        <form onSubmit={handleClick}>
-            <input type='file' ref={fileinput} />
-            <button type='submit'>Upload</button>
-        </form>
+            <form onSubmit={handleClick}>
+                <input type='file' ref={fileinput} />
+                <button type='submit'>Upload</button>
+            </form>
         </>
     )
 }
