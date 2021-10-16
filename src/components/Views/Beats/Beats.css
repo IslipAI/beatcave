@@ -2,19 +2,18 @@
   position: fixed;
   display: flex;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  height: 94%;
+  width: 100%;
+  overflow: scroll;
 }
 
 .beats-left-wrapper {
-  display: flex;
-  width: 20%;
   justify-content: center;
 }
 
 .beats-right-wrapper {
   display: flex;
-  width: 80%;
+  width: 100%;
   justify-content: center;
 }
 
@@ -72,7 +71,7 @@
   width: 100%;
 }
 
-.filter-button{
+.filter-button {
   width: 100%;
   height: 30px;
   border-radius: 10%;
@@ -81,35 +80,41 @@
   background-color: #000000;
 }
 
-
 /* .rhap_additional-controls{
   display: none;
 } */
 
-.beat-wrapper{
-  background-color: #000000;
-  margin: 5px;
+.beat-wrapper {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin: auto;
+  margin-bottom: 2%;
   padding: 10px 10px 10px 10px;
-  display: flex;
   width: 80%;
+  align-self: center;
 }
 
-.beat-content-wrapper{
-  width: 20%;
+.beat-content-wrapper {
+  width: 100%;
 }
 
-.beat-player-wrapper{
-  width: 80%;
+.beat-content-wrapper img {
+  width: 10%;
 }
 
-.beats-profile-picture{
-  width: 30%;
+.beat-content-wrapper p {
+  margin: auto;
 }
 
-.beats-title{
-  width: 80%;
+.beat-player-wrapper {
+  width: 100%;
+}
+
+.add-cart-beats {
+}
+
+.beats-title {
+  width: 100%;
   text-align: center;
 }
-
-
-

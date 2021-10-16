@@ -3,6 +3,8 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../Beats/Beats.css';
 import profilepicture from '../../Images/blank-profile-picture.png';
+import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_black_24dp.svg';
+import AddToCart from '../../Hooks/AddToCart';
 
 function GenreFilter(){
   return(
@@ -95,27 +97,25 @@ export default class Beats extends Component{
   async fetchAPI(){
     await fetch('https://www.beatcaveapi.com/beats')
     .then(res => res.json())
-    .then(
-        (result) => {
-            this.setState({
-                isLoaded : true,
-                beats: result.elements
-            });
-            console.log(result.elements);
-
-        },
-        (error) =>{
-            this.setState({
-                isLoaded: true, 
-                error
-            });
-        }
-    )
+    .then((result) => {
+      this.setState({
+          isLoaded : true,
+          beats: result.elements
+      });
+      console.log(result.elements);
+    })
+    .catch((error) =>{
+      this.setState({
+        isLoaded: true, 
+        error
+      });
+    });
   }
 
   componentDidMount() {
     this.fetchAPI();
   }
+
 
   RenderBeats = (beats) => {
     return beats.map((soundObj, index) =>{
@@ -123,14 +123,18 @@ export default class Beats extends Component{
         <div className="beat-wrapper"  key={index}>
           <div className="beat-content-wrapper">
             <img src={profilepicture} className="beats-profile-picture" alt="Beatseller"/>
+            <p>{soundObj.name}</p>
+            <p>{soundObj.beatkey}</p>
+            <p>{soundObj.description}</p>
+            <AddCart className="add-cart-beats" onClick={() => console.log("hello")}/>
           </div>
-
           <div className="beat-player-wrapper">
-          <AudioPlayer
-          className="beats-audio-player"
-            key={index}
-            src={soundObj.mp3path}
-            onPlay={e => console.log("onPlay")}/>
+            <AudioPlayer
+              className="beats-audio-player"
+              key={index}
+              src={soundObj.mp3path}
+              onPlay={e => console.log("onPlay")}
+            />
           </div>
         </div>
       )
@@ -142,15 +146,12 @@ export default class Beats extends Component{
     return(
       <div className="beats-wrapper">
         <div className="beats-left-wrapper">
-          <Filters/>
         </div>
         <div className="beats-right-wrapper">
-          <div className="beats-container">
             <ul>
               <h1 className="beats-title">Welcome to BeatCave</h1>
               {this.RenderBeats(beats)}
             </ul>
-          </div>
         </div>
       </div>
     )

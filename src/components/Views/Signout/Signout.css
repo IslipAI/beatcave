@@ -1,0 +1,37 @@
+.signout-wrapper{
+    display: flex;
+    background-color: black;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+}
+
+.signout-wrapper h3{
+    position: relative;
+    bottom: 80px;
+    color: white;
+}
+
+.signout-button-wrapper{
+    position: relative;
+    top: 200px;
+    text-align: center;
+    background-color: #282c34;
+    border-radius: 5%;
+    width: 400px;
+    height: 40%;
+}
+
+.signout-button-wrapper:hover {
+    filter: brightness(1.2);
+}
+
+.signout-button-wrapper button{
+    position: relative;
+    bottom: 40px;
+    width: 50%;
+    height: 30px;
+    border-radius: 10%;
+    color: #ffffff;
+    background-color: #000000;
+}
