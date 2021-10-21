@@ -4,7 +4,6 @@ import 'react-h5-audio-player/lib/styles.css';
 import '../Beats/Beats.css';
 import profilepicture from '../../Images/blank-profile-picture.png';
 import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_black_24dp.svg';
-import AddToCart from '../../Hooks/AddToCart';
 
 function GenreFilter(){
   return(
@@ -84,6 +83,19 @@ function Filters(){
   )
 }
 
+function AddToCart(id){
+  var beatsCart = sessionStorage.getItem('beatsCart');
+  if(beatsCart == null){
+    sessionStorage.setItem('beatsCart', id)
+  }else{
+    beatsCart = sessionStorage.getItem('beatsCart');
+
+    beatsCart = beatsCart + ',' + id;
+    sessionStorage.setItem('beatsCart', beatsCart)
+  }
+  //console.log(beatsCart);
+}
+
 export default class Beats extends Component{
   constructor(props){
     super(props);
@@ -102,7 +114,7 @@ export default class Beats extends Component{
           isLoaded : true,
           beats: result.elements
       });
-      console.log(result.elements);
+      //console.log(result.elements);
     })
     .catch((error) =>{
       this.setState({
@@ -126,7 +138,7 @@ export default class Beats extends Component{
             <p>{soundObj.name}</p>
             <p>{soundObj.beatkey}</p>
             <p>{soundObj.description}</p>
-            <AddCart className="add-cart-beats" onClick={() => console.log("hello")}/>
+            <AddCart className="add-cart-beats" onClick={() => AddToCart(soundObj.id)}/>
           </div>
           <div className="beat-player-wrapper">
             <AudioPlayer

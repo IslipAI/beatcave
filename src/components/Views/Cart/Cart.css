@@ -1,0 +1,29 @@
+.cartTitle{
+  position: relative;
+  margin: auto;
+  padding: 0px 10px 0px 10px;
+  width: 70%;
+  align-self: center;
+}
+
+.cart-beat-wrapper {
+  position: relative;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+  margin: auto;
+  margin-bottom: 1px;
+  padding: 10px 10px 10px 10px;
+  width: 70%;
+  align-self: center;
+}
+
+.cart-price-wrapper {
+  position: relative;
+  border-width: 2px;
+  margin: auto;
+  margin-bottom: 1px;
+  padding: 10px 10px 10px 10px;
+  width: 70%;
+  align-self: center;
+}

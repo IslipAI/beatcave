@@ -4,21 +4,34 @@ import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_white_24d
 
 
 function EventsDisplay(props){
-  console.log(props.events[0])
+  //console.log(props.events)
   return props.events.map((events, index) =>{
       return(
         <div className="eventContainer"  key={index}>
-            <h4>{props.events[index].name}</h4>
-            <p>{props.events[index].description}</p>
-            <p>{props.events[index].venue}</p>
-            <p>{props.events[index].venueaddress}</p>
-            <p>{props.events[index].date.split('T')[0]}</p>
-            <p>{props.events[index].starttime} - {props.events[index].endtime}</p>
-            <h4>${props.events[index].price}</h4>
-            <span>{<AddCart onClick={()=> console.log("Add item to shopping cart")}/>}</span>
+            <h4>{events.name}</h4>
+            <p>{events.description}</p>
+            <p>{events.venue}</p>
+            <p>{events.venueaddress}</p>
+            <p>{events.date.split('T')[0]}</p>
+            <p>{events.starttime} - {events.endtime}</p>
+            <h4>${events.price}</h4>
+            <AddCart onClick={()=> AddToCart(events.id)}/>
         </div>
       )
     })
+}
+
+function AddToCart(id){
+  var eventsCart = sessionStorage.getItem('eventsCart');
+  if(eventsCart == null){
+    sessionStorage.setItem('eventsCart', id)
+  }else{
+    eventsCart = sessionStorage.getItem('eventsCart');
+
+    eventsCart = eventsCart + ',' + id;
+    sessionStorage.setItem('eventsCart', eventsCart)
+  }
+  //console.log(eventsCart);
 }
 
 
