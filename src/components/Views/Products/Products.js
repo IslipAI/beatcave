@@ -3,11 +3,12 @@ import {uploadFile} from 'react-s3';
 import '../Products/Products.css';
 
 // //S3 SECRET VARIABLES.
-// const {REACT_APP_ACCESS_KEY} = process.env;
+//const {REACT_APP_ACCESS_KEY} = process.env;
 // const {REACT_APP_SECRET_KEY} = process.env;
 // const {REACT_APP_BUCKET_NAME} = process.env;
 // const {REACT_APP_DIR_NAME} = process.env;
 // const {REACT_APP_REGION} = process.env;
+
 
 // //S3 UPLOAD CONFIG.
 // const config = {

@@ -1,9 +1,12 @@
-.body, html {
+.body,
+html {
   height: 100%;
+  font-family: Arial !important;
 }
 
-.wrapper{
+.wrapper {
   height: 100%;
+  font-family: Arial;
 }
 
 ::-webkit-scrollbar {

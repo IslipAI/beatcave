@@ -15,7 +15,7 @@ function EventsDisplay(props){
             <p>{events.date.split('T')[0]}</p>
             <p>{events.starttime} - {events.endtime}</p>
             <h4>${events.price}</h4>
-            <AddCart onClick={()=> AddToCart(events.id)}/>
+            <AddCart className="add-cart-events" onClick={()=> AddToCart(events.id)}/>
         </div>
       )
     })

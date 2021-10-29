@@ -14,6 +14,7 @@ import Cart from './components/Views/Cart/Cart.js';
 import Authentication from './components/Views/Authentication/Authentication.js';
 import Signout from './components/Views/Signout/Signout';
 import Navbar from './components/Navbar/Navbar.js';
+import Payment from './components/Views/Payment/Payment.js'
 
 //Main App Component
 export default class App extends Component {
@@ -99,6 +100,9 @@ export default class App extends Component {
               </Route>
               <Route path="/signout">
                 <Signout/>
+              </Route>
+              <Route path="/payment">
+                <Payment/>
               </Route>
             </Switch>
           </BrowserRouter>

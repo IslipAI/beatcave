@@ -1,0 +1,101 @@
+.FormGroup {
+  margin: 0 15px 20px;
+  padding: 0;
+  border-style: none;
+  background-color: black;
+  will-change: opacity, transform;
+  box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 #829fff;
+  border-radius: 4px;
+}
+
+.FormRow {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 15px;
+  border-top: 1px solid #819efc;
+}
+
+.StripeElement--webkit-autofill {
+  background: transparent !important;
+}
+
+.StripeElement {
+  width: 100%;
+  padding: 11px 15px 11px 0;
+}
+
+.paybutton {
+  display: block;
+  font-size: 16px;
+  width: 30%;
+  height: 40px;
+  margin: 40px 15px 0;
+  background-color: black;
+  box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 #ffb9f6;
+  border-radius: 4px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 100ms ease-in-out;
+  will-change: transform, background-color, box-shadow;
+  border: none;
+}
+
+.paybutton:active {
+  background-color: #d782d9;
+  box-shadow: 0 6px 9px rgba(50, 50, 93, 0.06), 0 2px 5px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 #e298d8;
+  transform: scale(0.99);
+}
+
+.stripewrapper {
+  height: 100%;
+}
+
+.thankstext {
+  color: white;
+}
+
+.thanksbutton {
+  width: 50%;
+  height: 30px;
+  border-radius: 10%;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.thankswrapper {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 400px;
+  vertical-align: middle;
+  height: 40%;
+  background-color: #282c34;
+  border-radius: 5%;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.thankswrapper:hover {
+  filter: brightness(1.2);
+}
+
+.thanks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000000;
+  position: absolute;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+}

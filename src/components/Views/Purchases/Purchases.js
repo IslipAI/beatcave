@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../Purchases/Purchases.css';
 
 //function returns the user display populated with user data
 function PurchasesDisplay(props){
@@ -6,11 +7,11 @@ function PurchasesDisplay(props){
     return props.purchases.map((purchase, index) =>{
         console.log(props.purchases[0].datesold)
         return(
-          <div className=""  key={index}>
+          <div className="purchases"  key={index}>
               <p>{props.purchases[index].id}</p>
               <p>{props.purchases[index].name}</p>
-              <p>{props.purchases[index].datesold.split('T')[0]}</p>
-              <p>${props.purchases[index].purchasetotal}</p>
+              <p>{props.purchases[index].purchasedate.split('T')[0]}</p>
+              <p>Cart Total: ${props.purchases[index].purchasetotal}</p>
           </div>
         )
       })
@@ -27,7 +28,7 @@ export default class Purchases extends Component {
       }
 
       async fetchAPI(id){
-        await fetch('http://www.beatcaveapi.com/users/user/orders/' + id.toString() +'/')
+        await fetch('https://www.beatcaveapi.com/users/user/orders/' + id.toString() +'/')
         .then(res => res.json())
         .then(
             (result) => {
@@ -68,7 +69,9 @@ export default class Purchases extends Component {
     render() {
         return (
             <div>
-                <h1>Purchases</h1>
+                <div className='purchasesTitle'>
+                    <h1>Purchases:</h1>
+                </div>
                 <PurchasesDisplay purchases={this.state.purchases}/>
             </div>
         )

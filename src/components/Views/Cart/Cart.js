@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Cart.css';
+import { Link } from 'react-router-dom';
 
 function RenderBeats(props){
   //console.log(props.beats)
@@ -48,16 +49,25 @@ function RenderPrice(props){
 
   total = preTotal + tax;
 
+  sessionStorage.setItem('cartTotal', total.toFixed(2));
   //console.log(preTotal)
 
-  return(
-    <div className="cart-price-wrapper">
-      <h3>Pre-Total: ${preTotal}</h3>
-      <h3>Tax: ${tax.toFixed(2)}</h3>
-      <h3>Total: ${total.toFixed(2)}</h3>
-      <button>Check Out</button>
-    </div>
-  )
+  if(total == 0){
+    return (
+      <div className="cart-price-wrapper">
+        <p>Hmm...Seems like there is nothing in your cart!</p>
+      </div>
+    )
+  }else{
+    return(
+      <div className="cart-price-wrapper">
+        <h3>Pre-Total: ${preTotal.toFixed(2)}</h3>
+        <h3>Tax: ${tax.toFixed(2)}</h3>
+        <h3>Total: ${total.toFixed(2)}</h3>
+        <button><Link to='/payment'>Check Out</Link></button>
+      </div>
+    )
+  }
 }
 
 export default class Cart extends Component{
@@ -70,9 +80,9 @@ export default class Cart extends Component{
         beatIds: '',
         events: [],
         eventIds: '',
+        total: 0,
     };
   }
-
 
   async fetchAPI(){
     const {beatIds, eventIds} = this.state;

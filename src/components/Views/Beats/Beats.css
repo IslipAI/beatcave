@@ -101,7 +101,9 @@
 }
 
 .beat-content-wrapper img {
-  width: 10%;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 
 .beat-content-wrapper p {

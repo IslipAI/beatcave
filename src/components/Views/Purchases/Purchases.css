@@ -1,0 +1,16 @@
+.purchases {
+  width: 50%;
+  height: auto;
+  margin: auto;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.purchasesTitle{
+    position: relative;
+    margin: auto;
+    padding: 0px 0x 0px 10px;
+    width: 50%;
+    align-self: center;
+  }

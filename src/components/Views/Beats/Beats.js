@@ -130,11 +130,12 @@ export default class Beats extends Component{
 
 
   RenderBeats = (beats) => {
+    console.log(beats)
     return beats.map((soundObj, index) =>{
       return(
         <div className="beat-wrapper"  key={index}>
           <div className="beat-content-wrapper">
-            <img src={profilepicture} className="beats-profile-picture" alt="Beatseller"/>
+            <img src={soundObj.profilepicturepath} className="beats-profile-picture" alt="Beatseller"/>
             <p>{soundObj.name}</p>
             <p>{soundObj.beatkey}</p>
             <p>{soundObj.description}</p>

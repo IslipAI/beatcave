@@ -8,9 +8,15 @@ import {ReactComponent as Beats} from '../Icons/music_note_white_24dp.svg';
 import {ReactComponent as Money} from '../Icons/attach_money_white_24dp.svg';
 import {ReactComponent as SignOut} from '../Icons/logout_white_24dp.svg';
 import {ReactComponent as Admin} from '../Icons/admin_24dp.svg';
-import Cart from '../Views/Cart/Cart';
 
 
+/**
+ * Navbar link function.
+ * @param {*} props 
+ * @value to - page to redirect too.
+ * @value page - page title.
+ * @returns Link to direct page.
+ */
 function NavbarLink(props){
     return(
         <li><Link to={props.to}>{props.text}</Link></li>

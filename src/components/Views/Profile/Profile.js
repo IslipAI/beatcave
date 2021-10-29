@@ -7,7 +7,7 @@ function UserDisplay(props){
     return(
         <div className="profile-display">
             <h1 className="profile-view-title">Profile</h1>
-            <img src={profilepicture} className="profile-profile-picture" alt="Profile picture"/>
+            <img className="profile-profile-picture" alt="Profile picture" src='https://beatcave.s3.us-east-2.amazonaws.com/profilepictures/ProfilePic.jpg'/>
             <br/>
             <input type="text" defaultValue={props.email}/>
              <br/>
@@ -24,6 +24,9 @@ function UserDisplay(props){
     )
 }
 
+function updateUser(){
+
+}
 
 export default class Profile extends Component {
     constructor(props) {
@@ -60,6 +63,10 @@ export default class Profile extends Component {
               console.log(error)
             }
           )
+    }
+
+    async fetchAWS(){
+
     }
 
 
