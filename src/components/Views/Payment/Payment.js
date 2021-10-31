@@ -6,6 +6,7 @@ import './Payment.css';
 
 const PUBLIC_KEY = 'pk_test_51Jn5xJGxALe7ya1sqw8PyN1PiQQZUPJgIFARCsRVkfQ2elH29l8d974ovdXER1K5xARTLPK8SkXnHIxdLpoN3qSi00d4sitYHn';
 
+var x =2;
 const stripePromise = loadStripe(PUBLIC_KEY);
 
 export default function Payment(amount){

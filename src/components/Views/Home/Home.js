@@ -17,8 +17,10 @@ export default class Home extends Component{
     return(
       <div className="home-wrapper">
         <ul className="home-list">
-          <img src={logo} className="home-logo" alt="Beatcave Logo"/>
-          <h3 className="home-slogan">Welcome to the Cave. Find your inner creative.</h3>
+          <div>
+            <img src={logo} className="home-logo" alt="Beatcave Logo"/>
+            <h3 className="home-slogan">Welcome to the Cave. Find your inner creative.</h3>
+          </div>
           <img src={volumeOne} className="home-picture" alt="beatcave volume one"/>
           <img src={volumeTwo} className="home-picture" alt="beatacve camp tape"/>
           <br/>

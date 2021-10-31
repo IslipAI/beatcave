@@ -20,6 +20,16 @@
 
 .home-slogan {
   position: relative;
-  top: -80px;
   text-align: center;
+}
+
+.home-picture{
+  width: 40%
+}
+
+/*Home view Responsivenss*/
+@media only screen and (max-width: 500px) {
+  .home-picture{
+    width: 70%
+  }
 }

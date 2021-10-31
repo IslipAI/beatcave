@@ -100,3 +100,10 @@
 .menu {
   width: 100%;
 }
+
+/*Nav Bar Responsivenss*/
+@media only screen and (max-width: 800px) {
+  .main-links {
+    display: none;
+  }
+}
