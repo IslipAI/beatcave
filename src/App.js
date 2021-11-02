@@ -14,6 +14,7 @@ import Cart from './components/Views/Cart/Cart.js';
 import Authentication from './components/Views/Authentication/Authentication.js';
 import Signout from './components/Views/Signout/Signout';
 import Navbar from './components/Navbar/Navbar.js';
+import SideNavbar from './components/SideNavbar/SideNavbar';
 import Payment from './components/Views/Payment/Payment.js'
 
 //Main App Component
