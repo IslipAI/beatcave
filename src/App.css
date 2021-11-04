@@ -6,7 +6,7 @@ html {
 
 .wrapper {
   height: 100%;
-  font-family: Arial;
+  font-family: Georgia, Times, "Times New Roman", serif;
 }
 
 ::-webkit-scrollbar {

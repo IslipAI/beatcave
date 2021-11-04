@@ -120,6 +120,16 @@
   right: 10px;
 }
 
+.add-cart-beats:hover {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.add-cart-beats:active {
+  background-color: black;
+}
+
 .beats-title {
   width: 100%;
   text-align: center;
