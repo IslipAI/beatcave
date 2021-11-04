@@ -1,0 +1,12 @@
+.admin-wrapper {
+  text-align: center;
+}
+
+.salesChart {
+  display: flex;
+  justify-content: center;
+}
+
+.chartContainer {
+  width: fit-content;
+}
