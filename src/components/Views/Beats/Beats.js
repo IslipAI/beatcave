@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../Beats/Beats.css';
-import profilepicture from '../../Images/blank-profile-picture.png';
 import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_black_24dp.svg';
 
 function GenreFilter(){
@@ -83,19 +82,31 @@ function Filters(){
   )
 }
 
+/**
+ * Function adds a beat Id 
+ * to the cart to checkout later.
+ * @param {*} id - beat Id
+ */
 function AddToCart(id){
-  var beatsCart = sessionStorage.getItem('beatsCart');
-  if(beatsCart == null){
-    sessionStorage.setItem('beatsCart', id)
-  }else{
-    beatsCart = sessionStorage.getItem('beatsCart');
+  try{
+    var beatsCart = sessionStorage.getItem('beatsCart');
+    if(beatsCart == null){
+      sessionStorage.setItem('beatsCart', id)
+    }else{
+      beatsCart = sessionStorage.getItem('beatsCart');
 
-    beatsCart = beatsCart + ',' + id;
-    sessionStorage.setItem('beatsCart', beatsCart)
+      beatsCart = beatsCart + ',' + id;
+      sessionStorage.setItem('beatsCart', beatsCart)
+    }
+    //console.log(beatsCart);
+  }catch(error){
+    console.log(error)
   }
-  //console.log(beatsCart);
 }
 
+/**
+ * Beats class.
+ */
 export default class Beats extends Component{
   constructor(props){
     super(props);
@@ -106,7 +117,11 @@ export default class Beats extends Component{
     };
   }
 
-  async fetchAPI(){
+  /**
+   * Function calls a GET request to beats endpoint
+   * to retrive data about beats.
+   */
+  async fetchBeatsAPI(){
     await fetch('https://www.beatcaveapi.com/beats')
     .then(res => res.json())
     .then((result) => {
@@ -124,8 +139,11 @@ export default class Beats extends Component{
     });
   }
 
+  /**
+   * Calls the beat API before render.
+   */
   componentDidMount() {
-    this.fetchAPI();
+    this.fetchBeatsAPI();
   }
 
 
@@ -154,6 +172,10 @@ export default class Beats extends Component{
     })
   }
 
+  /**
+   * Beat Class render method.
+   * @returns Beats View.
+   */
   render(){
     const {beats} = this.state;
     return(
