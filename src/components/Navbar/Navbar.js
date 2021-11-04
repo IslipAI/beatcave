@@ -23,6 +23,11 @@ function NavbarLink(props){
     )
 }
 
+/**
+ * Function creates the dropdown button element.
+ * @param {*} props - Dropdown icon
+ * @returns the drop down button
+ */
 function DropdownIcon(props){
     return (
         <li className="dropdown-button">

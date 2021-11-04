@@ -54,7 +54,7 @@ async function postToHistory(total){
     }
 
     try {
-        await fetch('https://www.beatcaveapi.com/payment/addorder', requestOptions)
+        await fetch('http://localhost:8000/payment/addorder', requestOptions)
         .then(response => response.json())
         .then(data => {
           //console.log(data);

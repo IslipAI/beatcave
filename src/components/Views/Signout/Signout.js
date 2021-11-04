@@ -3,7 +3,7 @@ import '../Login/Login.css';
 import '../Register/Register.css';
 import '../Signout/Signout.css'
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
-import { useHistory } from "react-router-dom";
+//import { useHistory } from "react-router-dom";
 
 
 function DeleteJWT(){

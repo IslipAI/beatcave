@@ -10,11 +10,11 @@ import About from './components/Views/About/About.js';
 import Profile from './components/Views/Profile/Profile.js';
 import Products from './components/Views/Products/Products.js';
 import Purchases from './components/Views/Purchases/Purchases.js';
+import Admin from './components/Views/Admin/Admin.js';
 import Cart from './components/Views/Cart/Cart.js';
 import Authentication from './components/Views/Authentication/Authentication.js';
 import Signout from './components/Views/Signout/Signout';
 import Navbar from './components/Navbar/Navbar.js';
-import SideNavbar from './components/SideNavbar/SideNavbar';
 import Payment from './components/Views/Payment/Payment.js'
 
 //Main App Component
@@ -97,7 +97,7 @@ export default class App extends Component {
                 <Cart/>
               </Route>
               <Route path="/admin">
-                <Purchases/>
+                <Admin/>
               </Route>
               <Route path="/signout">
                 <Signout/>

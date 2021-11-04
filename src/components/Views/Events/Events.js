@@ -3,8 +3,13 @@ import '../Events/Events.css';
 import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_white_24dp.svg';
 
 
+/**
+ * Function returns a container filled with 
+ * event data. Can add to cart from here.
+ * @param {*} props - event data
+ * @returns event container
+ */
 function EventsDisplay(props){
-  //console.log(props.events)
   return props.events.map((events, index) =>{
       return(
         <div className="eventContainer"  key={index}>
@@ -21,58 +26,78 @@ function EventsDisplay(props){
     })
 }
 
+/**
+ * Function inserts id of event 
+ * to be added to cart.
+ * @param {*} id id of event.
+ */
 function AddToCart(id){
-  var eventsCart = sessionStorage.getItem('eventsCart');
-  if(eventsCart == null){
-    sessionStorage.setItem('eventsCart', id)
-  }else{
-    eventsCart = sessionStorage.getItem('eventsCart');
+  try{
+    var eventsCart = sessionStorage.getItem('eventsCart');
+    if(eventsCart == null){
+      sessionStorage.setItem('eventsCart', id)
+    }else{
+      eventsCart = sessionStorage.getItem('eventsCart');
 
-    eventsCart = eventsCart + ',' + id;
-    sessionStorage.setItem('eventsCart', eventsCart)
+      eventsCart = eventsCart + ',' + id;
+      sessionStorage.setItem('eventsCart', eventsCart)
+    }
+  }catch(error){
+    console.log(error);
   }
-  //console.log(eventsCart);
 }
 
-
+/**
+ * Events class.
+ */
 export default class Events extends Component{
   constructor(props){
       super(props);
       this.state = {
-          error: null, 
-          isLoaded: false, 
-          events: []
+          error: null,    //error holder
+          isLoaded: false,//page state 
+          events: []      //event data
       };
     }
 
-  //Calls API to get user products by id
-  async fetchAPI(){
+
+  /** 
+   * Calls event API.
+  */
+  async fetchEventsAPI(){
       await fetch("https://www.beatcaveapi.com/events/")
       .then(response => {
           return response.json()
       })
-      .then(
-          (result) => {
-              this.setState({
-                  isLoaded : true,
-                  events: result.elements
-              });
-              console.log(result.elements);
-  
-          },
-          (error) =>{
-              this.setState({
-                  isLoaded: true, 
-                  error
-              });
-          }
-      )
+      .then((result) => {
+          this.setState({
+              isLoaded : true,
+              events: result.elements
+          });
+          console.log(result.elements);
+        })
+      .catch((error) =>{
+        console.log(error)
+        this.setState({
+          isLoaded: true, 
+          error
+        });
+      })
   }
 
+
+  /**
+   * Function calls API before render.
+   */
   componentDidMount(){
-    this.fetchAPI();
+    this.fetchEventsAPI();
   }
   
+
+  /**
+   * Components render method.
+   * @returns Event view.
+   */
   render(){
       return(
           <div className="events">

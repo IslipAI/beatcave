@@ -2,6 +2,12 @@ import React, {Component} from 'react';
 import './Cart.css';
 import { Link } from 'react-router-dom';
 
+/**
+ * Renders the beat details div
+ * for each beat in cart.
+ * @param {*} props - array of beats
+ * @returns beats details div
+ */
 function RenderBeats(props){
   //console.log(props.beats)
 
@@ -17,9 +23,14 @@ function RenderBeats(props){
   })
 }
 
+/**
+ * Renders the event details div
+ * for each event in the cart.
+ * @param {*} props - array of events
+ * @returns event details div
+ */
 function RenderEvents(props){
   //console.log(props.events)
-
   return props.events.map((element, index) =>{
     //console.log(index)
     return(
@@ -32,6 +43,12 @@ function RenderEvents(props){
   })
 }
 
+/**
+ * Function calculates and renders the
+ * pricing components.
+ * @param {*} props arrays of beats and events.
+ * @returns pricing component.
+ */
 function RenderPrice(props){
   var preTotal = 0;
   var tax = 0;
@@ -52,7 +69,7 @@ function RenderPrice(props){
   sessionStorage.setItem('cartTotal', total.toFixed(2));
   //console.log(preTotal)
 
-  if(total == 0){
+  if(total === 0){
     return (
       <div className="cart-price-wrapper">
         <p>Hmm...Seems like there is nothing in your cart!</p>
@@ -70,6 +87,9 @@ function RenderPrice(props){
   }
 }
 
+/**
+ * Cart Class.
+ */
 export default class Cart extends Component{
   constructor(props){
     super(props);
