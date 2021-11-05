@@ -1,7 +1,9 @@
 import React from 'react';
-import '../Login/Login.css';
 import '../Register/Register.css';
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
+
+import Login from '../Login/Login.js';
+import Register from '../Register/Register.js';
 
 
 async function callLogin(email, password){
@@ -54,8 +56,6 @@ async function callRegister(email, password, firstname, lastname, artistname, ph
     return token;
 }
 
-
-
 export default class Authentication extends React.Component{
   constructor(props) {
     super();
@@ -72,137 +72,13 @@ export default class Authentication extends React.Component{
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.setShowLogin = this.setShowLogin.bind(this);
   }
 
-
-  LoginView(){
-    return(
-      <div className="login-wrapper">
-         <img src={logo} className="logo-login-register" alt="Beatcave Logo"/>
-        <div className="login-form-wrapper">
-        <form onSubmit={this.handleSubmit}>
-          <h3 className="login-text">Log In</h3>
-          <div>
-            <input 
-              className="login-email-input" 
-              type="text" 
-              placeholder="Email" 
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <br/>
-            <input 
-            className="login-password-input" 
-            type="password" 
-            placeholder="Password" 
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange} 
-            autoComplete="on"
-            required
-            />
-            <br/>
-            <button className="login-button">Log In</button>
-          </div>
-        </form>
-        <button className="register-login-button" onClick={() => this.setState(prevState =>({showLogin: !prevState.showLogin}))}>Don't have an account? Create One.</button>
-        </div>
-      </div>
-    )
-  }
-
-
-  RegistrationView(){
-    return(
-      <div className="register-wrapper">
-        <img src={logo} className="logo-login-register" alt="Beatcave logo"/>
-        <div className="register-form-wrapper">
-          <form onSubmit={this.handleSubmit}>
-            <h3 className="register-text">Sign Up</h3>
-            <div>
-              <input 
-                type="text" 
-                className="register-firstname-input" 
-                placeholder="First Name" 
-                name="firstname"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-                required
-              />
-              <input 
-                type="text" 
-                className="register-lastname-input" 
-                placeholder="Last Name" 
-                name="lastname"
-                value={this.state.lastname}
-                onChange={this.handleChange}
-                required
-              />
-              <br/>
-              <input 
-                type="text" 
-                className="register-email-input" 
-                placeholder="Email" 
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                required
-              />
-              <input type="text" 
-                className="register-address-input" 
-                placeholder="Artist Name"
-                name="artistname"
-                value={this.state.artistname}
-                onChange={this.handleChange}
-              />
-              <br/>
-              <input 
-                type="text" className="register-phone-input" 
-                placeholder="Phone" 
-                name="phonenumber"
-                value={this.state.phonenumber}
-                onChange={this.handleChange}
-                required
-              />
-              <input 
-                type="date" 
-                className="register-birthdate-input" 
-                name="birthdate"
-                value={this.state.birthdate}
-                onChange={this.handleChange}
-                required
-              />
-              <br/>
-              <input 
-              type="password" 
-              className="register-password-input"
-              placeholder="Password" 
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              autoComplete="on"
-              required
-              />
-              <input 
-              type="password" 
-              className="register-confirmpassword-input" 
-              placeholder="Confirm Password"
-              name="confirmpassword"
-              value={this.state.confirmpassword} 
-              onChange={this.handleChange} 
-              autoComplete="on"
-              required
-              />
-              <br/>
-              <button className="register-button">Sign Up</button>
-            </div>
-          </form>
-          <button className="register-login-button" onClick={() => this.setState(prevState =>({showLogin: !prevState.showLogin}))}>Already have an account? Log in.</button>
-        </div>
-      </div>
-    )
+  setShowLogin(){
+    this.setState(
+      prevState => ({showLogin: !prevState.showLogin})
+    );
   }
 
   handleChange(event) {
@@ -246,13 +122,32 @@ export default class Authentication extends React.Component{
   }
 
   render(){
+    const { email, password, confirmpassword, firstname, lastname, artistname, phonenumber, birthdate} = this.state;
     if(this.state.showLogin === true){
       return(
-        this.LoginView()
+        <Login
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        setShowLogin={this.setShowLogin}
+        email={email}
+        password={password}
+        />
       )
     }else{
       return(
-        this.RegistrationView()
+        <Register
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        setShowLogin={this.setShowLogin}
+        email={email}
+        password={password}
+        confirmpassword={confirmpassword}
+        firstname={firstname}
+        lastname={lastname}
+        artistname={artistname}
+        phonenumber={phonenumber}
+        birthdate={birthdate}
+        />
       )
     }
   }
