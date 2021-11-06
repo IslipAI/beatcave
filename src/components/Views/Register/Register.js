@@ -2,6 +2,11 @@ import React from 'react';
 import '../Register/Register.css';
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
 
+/**
+ * Function creates the registration form.
+ * @param {*} props - users registration credentials.
+ * @returns registration form.
+ */
 export default function Registration(props){
     return(
       <div className="register-wrapper">

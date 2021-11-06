@@ -2,6 +2,11 @@ import React from 'react';
 import '../Login/Login.css';
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
 
+/**
+ * Function creates login form.
+ * @param {*} props - users login credentials.
+ * @returns login form.
+ */
 export default function Login(props){
     return(
       <div className="login-wrapper">
