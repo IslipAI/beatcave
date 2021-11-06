@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import { BarChart, Bar, LineChart, Line, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis} from 'recharts';
 import '../Admin/Admin.css';
 
 

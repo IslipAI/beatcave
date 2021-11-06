@@ -1,33 +1,59 @@
 import React from 'react';
 import '../Register/Register.css';
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
-
 import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 
-
+/**
+ * Function calls login endpoint
+ * to retrive JWT token.
+ * @param {*} email - users email
+ * @param {*} password users password
+ * @returns JWT token
+ */
 async function callLogin(email, password){
+
+  //POST request options
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email: email, password: password })
   }
+
+  //fetch token
   var token = await fetch('https://www.beatcaveapi.com/users/login/', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          //console.log(data.elements)
-          return data.elements;
-        })
-        .catch(
-          error => {
-            console.log(error)
-          }
-        )
+      .then(response => response.json())
+      .then(data => {
+        //console.log(data.elements)
+        return data.elements;
+      })
+      .catch(error => {
+          //console.log(error)
+          return "User Doesn't Exist"
+        }
+      );
+      
+  //return token
   return token;
 }
 
-async function callRegister(email, password, firstname, lastname, artistname, phonenumber, birthdate){
-  const requestOptions = {
+/**
+ * Function calls register endpoint to
+ * create a new user.
+ * @param {*} email - users email
+ * @param {*} password - users password
+ * @param {*} firstname - users firstname
+ * @param {*} lastname - users lastname 
+ * @param {*} artistname - users artistname 
+ * @param {*} phonenumber - users phonenumber
+ * @param {*} birthdate - users birthdate
+ * @returns user's JWT token
+ */
+async function callRegister(email, password, firstname, 
+  lastname, artistname, phonenumber, birthdate){
+
+  //POST request options  
+  const requestoptions = {
     method: 'POST',
     headers: 
     { 'Content-Type': 'application/json' },
@@ -42,45 +68,59 @@ async function callRegister(email, password, firstname, lastname, artistname, ph
     })
   }
 
-  var token = await fetch('https://www.beatcaveapi.com/users/register/', requestOptions)
-        .then(response => response.json())
-        .then(data => {
-          //console.log(data.elements);
-          return data.elements;
-        })
-        .catch(
-          error => {
-            console.log(error)
-          }
-        )
+  //fetch token 
+  var token = await fetch('https://www.beatcaveapi.com/users/register/', requestoptions)
+    .then(response => response.json())
+    .then(data => {
+      //console.log(data.elements);
+      return data.elements;
+    })
+    .catch(
+      error => {
+        console.log(error)
+        return "User Doesn't Exist"
+      }
+    )
+
+    //return token
     return token;
 }
 
+/**
+ * Authentication Component.
+ */
 export default class Authentication extends React.Component{
   constructor(props) {
     super();
     this.state = {
-      firstname: "",
-      lastname: "", 
-      email: "",
-      password: "",
-      confirmpassword: "",
-      artistname: "",
-      phonenumber: "",
-      loginErrors: "",
-      showLogin: true,
+      firstname: "",       //users firstname
+      lastname: "",        //users lastname
+      email: "",           //users email
+      password: "",        //users password
+      confirmpassword: "", //password confirmation
+      artistname: "",      //artistname
+      phonenumber: "",     //phonenumber
+      loginErrors: "",     //login errors placeholder
+      showLogin: true,     //form switch
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.setShowLogin = this.setShowLogin.bind(this);
   }
 
+  /**
+   * Sets which form to be displayed to the user.
+   */
   setShowLogin(){
     this.setState(
       prevState => ({showLogin: !prevState.showLogin})
     );
   }
 
+  /**
+   * Function handles change of user input.
+   * @param {*} event - user input change. 
+   */
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -88,6 +128,10 @@ export default class Authentication extends React.Component{
     //console.log(event.target.value);
   }
 
+  /**
+   * Function sets the token if valid token.
+   * Sets the users status to logged in.
+   */
   async login(){
     const { email, password } = this.state;
     var token = await callLogin(email, password);
@@ -98,6 +142,10 @@ export default class Authentication extends React.Component{
     }
   }
 
+  /**
+   * Function sets the token if valid.
+   * Sets the users status to logged in.
+   */
   async register(){
     const { email, password, confirmpassword, firstname, lastname, artistname, phonenumber, birthdate} = this.state;
 
@@ -112,6 +160,11 @@ export default class Authentication extends React.Component{
     }
   }
 
+  /**
+   * Handles which function to 
+   * call on authentication.
+   * @param {*} e 
+   */
   handleSubmit(e){
     e.preventDefault();
     if(this.state.showLogin === true){
@@ -121,8 +174,15 @@ export default class Authentication extends React.Component{
     }
   }
 
+  /**
+   * Function renders components view.
+   * @returns rendered Authenticaton view.
+   */
   render(){
-    const { email, password, confirmpassword, firstname, lastname, artistname, phonenumber, birthdate} = this.state;
+
+    const { email, password, confirmpassword, firstname, lastname, 
+      artistname, phonenumber, birthdate} = this.state;
+
     if(this.state.showLogin === true){
       return(
         <Login

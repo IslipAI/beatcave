@@ -3,13 +3,15 @@ import '../Login/Login.css';
 import '../Register/Register.css';
 import '../Signout/Signout.css'
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
-//import { useHistory } from "react-router-dom";
 
 
+/**
+ * Function removes JWT token.
+ */
 function DeleteJWT(){
   try{
     sessionStorage.removeItem("token");
-    window.location.reload();
+    window.location.href="/home";
     console.log(sessionStorage.getItem("token"));
   } catch (error) {
     console.log(error);
@@ -17,6 +19,10 @@ function DeleteJWT(){
 
 }
 
+/**
+ * Function creates Signout view.
+ * @returns Signout display.
+ */
 function SignoutView(){
   return(
     <div className="signout-button-wrapper">
@@ -27,10 +33,16 @@ function SignoutView(){
   )
 }
 
-
+/**
+ * Signout component.
+ */
 export default class Signout extends React.Component{
 
 
+  /**
+   * Components render function.
+   * @returns Rendered signout view
+   */
   render(){
     return(
       <div className="signout-wrapper">

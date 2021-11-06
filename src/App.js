@@ -43,6 +43,10 @@ export default class App extends Component {
       this.setState({
         loggedInStatus : "LOGGED_IN"
       })
+    }else{
+      this.setState({
+        loggedInStatus : "NOT_LOGGED_IN"
+      })
     }
   }
 
