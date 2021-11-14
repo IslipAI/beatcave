@@ -2,26 +2,24 @@ import React, {Component, useState} from 'react';
 import {uploadFile} from 'react-s3';
 import '../Products/Products.css';
 
-// //S3 SECRET VARIABLES.
-//const {REACT_APP_ACCESS_KEY} = process.env;
-// const {REACT_APP_SECRET_KEY} = process.env;
-// const {REACT_APP_BUCKET_NAME} = process.env;
-// const {REACT_APP_DIR_NAME} = process.env;
-// const {REACT_APP_REGION} = process.env;
 
-
-// //S3 UPLOAD CONFIG.
-// const config = {
-//     bucketName: REACT_APP_BUCKET_NAME,
-//     dirName: REACT_APP_DIR_NAME,
-//     region: REACT_APP_REGION,
-//     accessKeyId: REACT_APP_ACCESS_KEY, 
-//     secretAccessKey: REACT_APP_SECRET_KEY,
-// }
-
-//Function sends post request to BEATCAVEAPI to add an event.
-async function PostEvent(name, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime){
-    console.log("EVENT POST REQUEST!")
+/**
+ * Function calls event endpoint to upload event.
+ * @param {*} name - name of event
+ * @param {*} totaltickets - number of tickets
+ * @param {*} venuename  - venue name
+ * @param {*} venueaddress - venue address
+ * @param {*} city - city of event 
+ * @param {*} price - price of event
+ * @param {*} description - description of event
+ * @param {*} date - date of event
+ * @param {*} starttime - start time of event
+ * @param {*} endtime - end time of event
+ */
+async function PostEvent(name, totaltickets, venuename, venueaddress, 
+    city, price, description, date, starttime, endtime){
+    //console.log("EVENT POST REQUEST!")
+    
     const requestOptions = {
       method: 'POST',
       headers: 
@@ -42,15 +40,25 @@ async function PostEvent(name, totaltickets, venuename, venueaddress, city, pric
 
     await fetch('https://www.beatcaveapi.com/events/addevent/', requestOptions)
         .then(response => console.log(response))
-        .catch(
-          error => {
+        .catch(error => {
             console.log(error)
           }
         )
 }
 
-//Function sends post request to BEATCAVEAPI to add beat.
-async function PostBeat(id, productname, beatkey, genre, bpm, description, mp3path, price){
+/**
+ * Function calls POST beat endpoint.
+ * @param {*} id - userid
+ * @param {*} productname - the beats name
+ * @param {*} beatkey - the beat key
+ * @param {*} genre - the beats genre
+ * @param {*} bpm - the beats bpm
+ * @param {*} description - the beats description
+ * @param {*} mp3path - the mp3 path of the beat in aws bucket.
+ * @param {*} price - the price of the beat
+ */
+async function PostBeat(id, productname, beatkey, genre, 
+    bpm, description, mp3path, price){
     console.log("BEAT POST REQUEST!")
     console.log(mp3path);
     const requestOptions = {
@@ -79,7 +87,11 @@ async function PostBeat(id, productname, beatkey, genre, bpm, description, mp3pa
 
 }
 
-//Beat upload form.
+/**
+ * Initializes beat upload form.
+ * @param {*} props 
+ * @returns Beat upload form.
+ */
 function BeatUploadForm(props){
 
     const [selectedFile, setSelectedFile] = useState(null);
@@ -145,7 +157,11 @@ function BeatUploadForm(props){
     )
 }
 
-//Event Upload form.
+/**
+ * Initialized event upload form.
+ * @param {*} props 
+ * @returns event upload form.
+ */
 function EventUploadForm(props){
     return(
         <div>
@@ -264,6 +280,11 @@ function EventUploadForm(props){
     )
 }
 
+/**
+ * Decides what form to output to user.
+ * @param {*} props 
+ * @returns forms 
+ */
 function UploadForm(props){
     if(props.showForm === "beats"){
         return(
@@ -283,6 +304,13 @@ function UploadForm(props){
     }
 }
 
+/**
+ * Creates products container with each products
+ * information. 
+ * information.
+ * @param {*} props 
+ * @returns Product display.
+ */
 function UploadedProductsDisplay(props){
     //console.log(props.products[0])
     return props.products.map((products, index) =>{
@@ -297,7 +325,9 @@ function UploadedProductsDisplay(props){
       })
 }
 
-
+/**
+ * Products Component
+ */
 export default class Products extends Component{
     constructor(props){
         super(props);
@@ -331,7 +361,11 @@ export default class Products extends Component{
     }
     
 
-    //Calls API to get user products by id
+    /**
+     * Calls user endpoint by id 
+     * to get user data.
+     * @param {*} id - users data
+     */
     async fetchAPI(id){
         await fetch("https://www.beatcaveapi.com/users/user/products/" + id.toString() + "/")
         .then(response => {
@@ -369,7 +403,10 @@ export default class Products extends Component{
     }
 
 
-    //Method gets userid.
+    /**
+     * Gets user id from the JWT token.
+     * @returns JWT token
+     */
     getUserId(){
         const storedToken = sessionStorage.getItem('token');
         if(storedToken != null){
@@ -383,7 +420,9 @@ export default class Products extends Component{
     }
 
 
-    //Method checks if you are admin status.
+    /**
+     * Method checks if you have admin privledges.
+     */
     checkAdmin(){
         const storedToken = sessionStorage.getItem('token');
         if(storedToken != null){
@@ -409,7 +448,10 @@ export default class Products extends Component{
     }
 
 
-    //Changes variables state upon change.
+    /**
+     * Changes variables value on event change.
+     * @param {*} event - user changing input.
+     */
     handleChange(event) {
         this.setState({
             [event.target.name]: event.target.value,
@@ -418,6 +460,10 @@ export default class Products extends Component{
     }
 
 
+    /**
+     * Function executes these methods
+     * before component renders.
+     */
     componentDidMount(){
         var id = this.getUserId();
         this.setState({userid: id});
@@ -425,6 +471,10 @@ export default class Products extends Component{
         this.checkAdmin();
     }
 
+    /**
+     * Function handles uploading 
+     * @param {*} file 
+     */
     handleUpload = async (file) => {
         const {userid, beatname, 
             key, genre, bpm, 

@@ -1,86 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../Beats/Beats.css';
 import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_black_24dp.svg';
 
-function GenreFilter(){
-  return(
-    <div className="genre-filter-wrapper">
-      <select name="genre" id="genre" className="genre-filter" defaultValue={'DEFAULT'} >
-        <option value="DEFAULT" disabled>Genre</option>
-        <option value="volvo">Hip Hop</option>
-        <option value="saab">Trap</option>
-        <option value="audi">Future Bass</option>
-        <option value="volvo">Techno</option>
-        <option value="saab">House</option>
-        <option value="audi">UK Garage</option>
-        <option value="audi">Progressive House</option>
-        <option value="audi">Hardstyle</option>
-      </select>
-    </div>
-  )
-}
-
-function DownloadsFilter(){
-  return(
-    <div className="downloads-filter-wrapper">
-      <select name="cars" id="cars" className="downloads-filter" defaultValue={'DEFAULT'} >
-        <option value="DEFAULT" disabled>Downloads</option>
-        <option value="volvo">High to Low</option>
-        <option value="saab">Low to High</option>
-      </select>
-    </div>
-  )
-}
-
-function PriceFilter(){
-  return(
-    <div className="price-filter-wrapper">
-      <select name="genre" id="genre" className="price-filter" defaultValue={'DEFAULT'} >
-        <option value="DEFAULT" disabled>Price</option>
-        <option value="volvo">High to Low</option>
-        <option value="saab">Low to High</option>
-      </select>
-    </div>
-  )
-}
-
-function BpmFilter(){
-  return(
-    <div className="bpm-filter-wrapper">
-      <input className="bpm-filter" type="range" min="1" max="200" id="myRange"/>
-    </div>
-  )
-}
-
-function KeyFilter(){
-  return(
-    <div className="key-filter-wrapper">
-      <select name="cars" id="cars" className="key-filter" defaultValue={"DEFAULT"} >
-        <option value="DEFAULT" disabled>Key</option>
-        <option value="volvo">Volvo</option>
-        <option value="saab">Saab</option>
-        <option value="mercedes">Mercedes</option>
-        <option value="audi">Audi</option>
-      </select>
-    </div>
-  )
-}
-
-function Filters(){
-  return(
-    <ul className="filter-list">
-      <input type="text"/>
-      <GenreFilter/>
-      <DownloadsFilter/>
-      <PriceFilter/>
-      <BpmFilter/>
-      <KeyFilter/>
-      <button className="filter-button">Search</button>
-    </ul>
-  )
-}
 
 /**
  * Function adds a beat Id 
@@ -192,3 +115,30 @@ export default class Beats extends Component{
     )
   }
 }
+
+function Beat(props){
+  //console.log(props.data);
+  const {id, beatkey, name, profilepicturepath, description, mp3path} = props.data;
+  return(
+    <div className="beat-wrapper">
+          <div className="beat-content-wrapper">
+            <img src={profilepicturepath} className="beats-profile-picture" alt="Beatseller"/>
+            <p>{name}</p>
+            <p>{beatkey}</p>
+            <p>{description}</p>
+            <AddCart className="add-cart-beats" onClick={() => AddToCart(id)}/>
+          </div>
+          <div className="beat-player-wrapper">
+            <AudioPlayer
+              id="player"
+              className="beats-audio-player"
+              src={mp3path}
+              onPlay={e => console.log(e)}
+              preload='metadata'
+            />
+          </div>
+        </div>
+  )
+}
+
+
