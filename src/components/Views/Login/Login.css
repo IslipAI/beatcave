@@ -24,7 +24,7 @@
   flex-direction: column;
   position: relative;
   top: 0%;
-  width: 400px;
+  width: 25%;
   height: 40%;
   background-color: #282c34;
   border-radius: 5%;
@@ -68,6 +68,24 @@
   border: none;
 }
 
-.FDS{
+.FDS {
   height: 100vh;
+}
+
+@media only screen and (max-width: 1000px) {
+  .login-form-wrapper {
+    width: 35%;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .login-form-wrapper {
+    width: 45%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .login-form-wrapper {
+    width: 65%;
+  }
 }
