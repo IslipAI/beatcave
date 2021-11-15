@@ -18,7 +18,7 @@
   flex-direction: column;
   position: relative;
   top: 0%;
-  width: 400px;
+  width: 40%;
   height: 40%;
   background-color: #282c34;
   border-radius: 5%;
@@ -105,4 +105,28 @@
   background-color: #282c34;
   cursor: pointer;
   border: none;
+}
+
+@media only screen and (max-width: 1000px) {
+  .register-form-wrapper {
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .register-form-wrapper {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .register-form-wrapper {
+    width: 90%;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .register-form-wrapper {
+    width: 100%;
+  }
 }
