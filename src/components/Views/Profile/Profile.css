@@ -1,20 +1,30 @@
-.profile-wrapper{
-    display: flex;
-    justify-content: center;
-    background-color: blueviolet;
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
-.profile-display{
-    text-align: center;
+.profile-display {
+  text-align: center;
+  align-items: center;
+  width: fit-content;
 }
 
-.profile-profile-picture{
-    width: 10%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+.profile-display input {
+  margin-top: 2%;
+  margin-bottom: 1%;
 }
 
-.profile-view-title{
-    text-align: center;
+.profile-profile-picture {
+  width: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profile-view-title {
+  align-self: center;
+}
+
+.fileInput {
+  width: 180px;
 }
