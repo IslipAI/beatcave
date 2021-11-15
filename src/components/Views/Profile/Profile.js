@@ -98,7 +98,7 @@ async function updateUser(id, firstname, lastname, artistname, phonenumber, prof
         })
       }
 
-      await fetch('http://localhost:8000/users/updateuser/', requestOptions)
+      await fetch('https://www.beatcaveapi.com/users/updateuser/', requestOptions)
         .then(response => console.log(response))
         .catch(error => {
             console.log(error)
