@@ -132,9 +132,9 @@ export default function PaymentForm(){
     return(
         <>
         {!success ?
-        <div>
+        <div className="paymentformdiv">
             <h1>Total: ${cartTotal}</h1>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="paymentform">
                 <fieldset className='FormGroup'>
                     <div className='FormRow'>
                         <CardElement options={CARD_OPTIONS}/>

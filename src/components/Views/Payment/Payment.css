@@ -99,3 +99,13 @@
   width: 100%;
   z-index: 100;
 }
+
+.paymentformdiv {
+  text-align: center;
+}
+
+.paymentform button{
+  text-align: center;
+  margin: auto;
+}
+
