@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../Beats/Beats.css';
@@ -71,7 +71,7 @@ export default class Beats extends Component{
 
 
   RenderBeats = (beats) => {
-    console.log(beats)
+    //console.log(beats)
     return beats.map((soundObj, index) =>{
       return(
         <div className="beat-wrapper"  key={index}>
@@ -116,29 +116,5 @@ export default class Beats extends Component{
   }
 }
 
-function Beat(props){
-  //console.log(props.data);
-  const {id, beatkey, name, profilepicturepath, description, mp3path} = props.data;
-  return(
-    <div className="beat-wrapper">
-          <div className="beat-content-wrapper">
-            <img src={profilepicturepath} className="beats-profile-picture" alt="Beatseller"/>
-            <p>{name}</p>
-            <p>{beatkey}</p>
-            <p>{description}</p>
-            <AddCart className="add-cart-beats" onClick={() => AddToCart(id)}/>
-          </div>
-          <div className="beat-player-wrapper">
-            <AudioPlayer
-              id="player"
-              className="beats-audio-player"
-              src={mp3path}
-              onPlay={e => console.log(e)}
-              preload='metadata'
-            />
-          </div>
-        </div>
-  )
-}
 
 

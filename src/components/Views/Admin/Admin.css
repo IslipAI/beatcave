@@ -9,4 +9,6 @@
 
 .chartContainer {
   width: fit-content;
+  background-color: blue;
+  width: 100%;
 }

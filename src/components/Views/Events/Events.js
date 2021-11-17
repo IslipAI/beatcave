@@ -74,7 +74,7 @@ export default class Events extends Component{
               isLoaded : true,
               events: result.elements
           });
-          console.log(result.elements);
+          //console.log(result.elements);
         })
       .catch((error) =>{
         console.log(error)

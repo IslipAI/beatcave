@@ -1,6 +1,5 @@
 import React from 'react';
 import '../Register/Register.css';
-import logo from '../../Images/BEATCAVE_WHITE_180.png';
 import Login from '../Login/Login.js';
 import Register from '../Register/Register.js';
 
@@ -69,7 +68,7 @@ async function callRegister(email, password, firstname,
   }
 
   //fetch token 
-  var token = await fetch('https://www.beatcaveapi.com/users/register/', requestoptions)
+  var token = await fetch('http://www.beatcaveapi.com/users/register/', requestoptions)
     .then(response => response.json())
     .then(data => {
       //console.log(data.elements);
@@ -100,6 +99,7 @@ export default class Authentication extends React.Component{
       confirmpassword: "", //password confirmation
       artistname: "",      //artistname
       phonenumber: "",     //phonenumber
+      birthdate: "",
       loginErrors: "",     //login errors placeholder
       showLogin: true,     //form switch
     };

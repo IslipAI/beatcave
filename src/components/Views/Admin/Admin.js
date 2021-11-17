@@ -17,13 +17,13 @@ function Chart(props){
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
             <option value="yearly">Yearly</option>
-        </select>
-        <BarChart width={700} height={300} data={props.salesData}>
+        </select>      
+        <BarChart width={700} height={300} data={props.salesData} className="barchart">
           <Bar dataKey="productSold" fill="black" />
           <XAxis dataKey="name" />
           <YAxis dataKey="productSold"/>
         </BarChart>
-        <LineChart width={700} height={300} data={props.salesData}>
+        <LineChart width={700} height={300} data={props.salesData} className="linechart">
             <Line dataKey="totalSales" fill="black" />
             <XAxis dataKey="name" />
             <YAxis dataKey="totalSales"/>
@@ -139,17 +139,17 @@ export default class Admin extends PureComponent {
             <div className="admin-wrapper">
                 <h1>Admin Panel</h1>
                 <Charts 
-                dailySalesData={dailySalesData}
-                weeklySalesData={weeklySalesData} 
-                yearlySalesData={yearlySalesData}
-                chartTimeLine={chartTimeLine}
-                setChartTimeLine={this.setChartTimeLine}
-            />
+                    dailySalesData={dailySalesData}
+                    weeklySalesData={weeklySalesData} 
+                    yearlySalesData={yearlySalesData}
+                    chartTimeLine={chartTimeLine}
+                    setChartTimeLine={this.setChartTimeLine}
+                />
             </div>
         )
     }else{
         return(
-            <h1>Loading</h1>
+            <h1>Loading...</h1>
         )
     }
   }

@@ -40,6 +40,7 @@ async function PostEvent(name, totaltickets, venuename, venueaddress,
 
     await fetch('https://www.beatcaveapi.com/events/addevent/', requestOptions)
         .then(response => console.log(response))
+        .then(window.location.reload(false))
         .catch(error => {
             console.log(error)
           }
@@ -79,6 +80,7 @@ async function PostBeat(id, productname, beatkey, genre,
 
       await fetch('https://www.beatcaveapi.com/beats/addbeat/', requestOptions)
       .then(response => console.log(response))
+      .then(window.location.reload(false))
       .catch(
         error => {
           console.log(error)
@@ -101,13 +103,14 @@ function BeatUploadForm(props){
     }
 
     return(
-        <div>
-            <form>
+        <div className="formcontainer">
+            <form className='beatform'>
             <select id="Genre" name="genre" onChange={props.handleChange}>
-                <option value="rap">Rap</option>
-                <option value="house">House</option>
-                <option value="dubstep">Dubstep</option>
-                <option value="trance">Trance</option>
+                <option value="Rap">Rap</option>
+                <option value="House">House</option>
+                <option value="Dubstep">Dubstep</option>
+                <option value="Trance">Trance</option>
+                <option value="Garage">Garage</option>
             </select>
             <br/>
             <select id="Key" name="key" onChange={props.handleChange}>
@@ -115,6 +118,9 @@ function BeatUploadForm(props){
                 <option value="D">D</option>
                 <option value="E">E</option>
                 <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
             </select>
             <br/>
             <input 
@@ -165,7 +171,7 @@ function BeatUploadForm(props){
 function EventUploadForm(props){
     return(
         <div>
-            <form onSubmit={props.uploadProduct}>
+            <form onSubmit={props.uploadProduct} className="eventform">
             <input 
                 type="text" 
                 name="productname"
@@ -224,18 +230,21 @@ function EventUploadForm(props){
                 min="1" 
                 max="1000" 
                 step="any"
+                placeholder="Price"
                 onChange={props.handleChange}
                 required
             />
             <br/>
             <input 
                 type="date" 
-                name="birthdate"
+                name="date"
+                placeholder="1"
                 onChange={props.handleChange}
                 required
               />
             <br/>
             <select id="starttime" name="starttime" onChange={props.handleChange}>
+                <option value="" disabled selected hidden>Choose Start Time</option>
                 <option value="8AM">8AM</option>
                 <option value="9AM">9AM</option>
                 <option value="10AM">10AM</option>
@@ -254,7 +263,9 @@ function EventUploadForm(props){
                 <option value="11PM">11PM</option>
                 <option value="12AM">12AM</option>
             </select>
+            <br/>
             <select id="endtime" name="endtime" onChange={props.handleChange}>
+            <option value="" disabled selected hidden>Choose End Time</option>
                 <option value="8AM">8AM</option>
                 <option value="9AM">9AM</option>
                 <option value="10AM">10AM</option>
@@ -347,14 +358,15 @@ export default class Products extends Component{
             date: null, 
             starttime: null,
             endtime: null,
-            key: "",
-            genre: '',
+            key: "C",
+            genre: 'Rap',
             bpm: 0,
             bucket: '',
             directory: '',
             region: '',
             access: '',
             secret: '',
+            error: null,
         };
         this.handleChange = this.handleChange.bind(this);
         this.uploadProduct = this.uploadProduct.bind(this);
@@ -390,7 +402,7 @@ export default class Products extends Component{
             return response.json();
         })
         .then((result)=>{
-            console.log(result);
+            //console.log(result);
             this.setState({
                 bucket: result.elements[0].bucketname,
                 directory: result.elements[0].directory,
@@ -456,7 +468,7 @@ export default class Products extends Component{
         this.setState({
             [event.target.name]: event.target.value,
         });
-        console.log(event.target.value);
+        //console.log(event.target.value);
     }
 
 
@@ -493,7 +505,7 @@ export default class Products extends Component{
 
         uploadFile(file, config)
             .then(async function(data){
-                console.log(data.location);
+                //console.log(data.location);
                 await PostBeat(userid, beatname, 
                     key, genre, bpm, 
                     description, data.location.toString(), price);
@@ -502,13 +514,19 @@ export default class Products extends Component{
         
     }
 
+    /**
+     * Decides what tAPI endpoint to call.
+     * @param {*} e user event.
+     */
     uploadProduct(e){
         e.preventDefault();
-        const {productname, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime} = this.state;
+        const {productname, totaltickets, venuename, venueaddress, 
+            city, price, description, date, starttime, endtime} = this.state;
         if(this.state.showForm === "beats"){
             //Do nothing
         }else{
-            PostEvent(productname, totaltickets, venuename, venueaddress, city, price, description, date, starttime, endtime);
+            PostEvent(productname, totaltickets, venuename, venueaddress, 
+                city, price, description, date, starttime, endtime);
         }
 
     }

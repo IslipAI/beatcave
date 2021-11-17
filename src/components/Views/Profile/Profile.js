@@ -1,6 +1,5 @@
 import React, { Component, useState } from 'react';
 import '../Profile/Profile.css';
-import profilepicture from '../../Images/blank-profile-picture.png';
 import {uploadFile} from 'react-s3';
 
 /**
@@ -21,7 +20,7 @@ function UserDisplay(props){
     return(
         <div className="profile-display">
             <h1 className="profile-view-title">Profile</h1>
-            <img className="profile-profile-picture" alt="Profile picture" src={props.profilepicturepath}/>
+            <img className="profile-profile-picture" alt="Profile" src={props.profilepicturepath}/>
             <br/>
             <input 
                 type="file" 

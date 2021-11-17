@@ -1,6 +1,7 @@
 import React from 'react';
 import '../Login/Login.css';
 import logo from '../../Images/BEATCAVE_WHITE_180.png';
+//import PasswordHash from '../../Hooks/PassHash';
 
 /**
  * Function creates login form.

@@ -1,31 +1,79 @@
-.products-wrapper{
-    display: flex;
-    flex-direction: row;
+.products-wrapper {
+  display: flex;
+  flex-direction: row;
 }
 
-.products-right-wrapper{
-    width: 50%;
-    text-align: center;
-    padding: 150px 0;
+.products-right-wrapper {
+  width: 50%;
+  text-align: center;
+  padding: 150px 0;
 }
 
-
-.products-left-wrapper{
-    width: 50%;
-    text-align: center;
-    padding: 150px 0;
+.products-left-wrapper {
+  width: 50%;
+  text-align: center;
+  padding: 150px 0;
 }
 
-.product-container{
-    width: 50%;
-    height: auto;
-    margin: auto;
-    border-width:2px;
-    border-style: solid;
-    border-color: black;
+.product-container {
+  width: 50%;
+  height: auto;
+  margin: auto;
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
 }
 
-.product-container p{
-    width: 50%;
-    margin: auto;
+.product-container p {
+  width: 50%;
+  margin: auto;
 }
+
+.beatform {
+  align-self: center;
+}
+
+.beatform input {
+  margin: 1%;
+  width: 25%;
+}
+
+.beatform select {
+  margin: 1%;
+  width: 26%;
+}
+
+.beatform textarea {
+  margin: 1%;
+  width: 25%;
+}
+
+.beatform button {
+  margin: 1%;
+  width: 25%;
+}
+
+.beatform {
+    align-self: center;
+  }
+  
+  .eventform input {
+    margin: 1%;
+    width: 25%;
+  }
+  
+  .eventform select {
+    margin: 1%;
+    width: 26%;
+  }
+  
+  .eventform textarea {
+    margin: 1%;
+    width: 25%;
+  }
+  
+  .eventform button {
+    margin: 1%;
+    width: 25%;
+  }
+  

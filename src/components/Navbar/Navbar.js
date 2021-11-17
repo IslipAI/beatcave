@@ -36,18 +36,8 @@ function DropdownIcon(props){
     );
 }
 
-//NEEDS WORK
-// function CartIcon(props){
-//     return (
-//         <li className="cart-button">
-//             <Link className='testclass' to='/cart'>{props.icon}</Link>
-//         </li>
-//     );
-// }
-
-
 function Dropdown(props) {
-    console.log(props.adminStatus)
+    //console.log(props.adminStatus)
     if(props.adminStatus === true){
         return(
             <div className="dropdown">
@@ -173,9 +163,6 @@ class Navbar extends Component{
                     <NavbarLink to="/events" text="EVENTS"/>
                     <NavbarLink to="/about" text="ABOUT"/> 
                 </ul>
-                {/* <ul className="main-links">
-                    <CartIcon icon={<AddCart/>}/>
-                </ul> */}
                 <a href="ref" className="button" onClick={e => this.showDropdown(e)}>
                     <DropdownIcon icon={<Burger/>}/>
                 </a>
