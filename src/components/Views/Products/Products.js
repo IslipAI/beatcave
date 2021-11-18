@@ -106,7 +106,7 @@ async function DeleteBeat(id){
         })
       }
 
-      await fetch('http://www.beatcaveapi.com/beats/deletebeat/', requestOptions)
+      await fetch('https://www.beatcaveapi.com/beats/deletebeat/', requestOptions)
       .then(response => console.log(response))
       .then(window.setTimeout(window.location.reload(false), 500))
       .catch(error => {
@@ -116,6 +116,12 @@ async function DeleteBeat(id){
     //console.log(id);
 }
 
+/**
+ * Function calls update beat endpoint.
+ * @param {*} id - beat id
+ * @param {*} name - beat name
+ * @param {*} description - beat description
+ */
 async function UpdateBeat(id, name, description){
     console.log(name);
     const requestOptions = {
@@ -129,7 +135,7 @@ async function UpdateBeat(id, name, description){
         })
       }
 
-      await fetch('http://localhost:8000/beats/updatebeat/', requestOptions)
+      await fetch('https://www.beatcaveapi.com/beats/updatebeat/', requestOptions)
       .then(response => console.log(response))
       .then(window.setTimeout(window.location.reload(false), 500))
       .catch(error => {
@@ -187,6 +193,17 @@ function BeatUploadForm(props){
                 type="text" 
                 placeholder="Name"
                 name="beatname"
+                onChange={props.handleChange}
+                required
+            />
+            <br/>
+            <input 
+                type="number" 
+                name="price"
+                min="1" 
+                max="1000" 
+                step="any"
+                placeholder="Price"
                 onChange={props.handleChange}
                 required
             />
@@ -371,68 +388,73 @@ function UploadForm(props){
  */
 function UploadedProductsDisplay(props){
     //console.log(props.products[0])
-    return props.products.map((products, index) =>{
-        return(
-          <div className="product-container"  key={index}>
-              <p>{props.products[index].name}</p>
-              <p>{props.products[index].genre}</p>
-              <p>KEY:{props.products[index].beatkey} &nbsp;&nbsp; BPM:{props.products[index].bpm}</p>
-              <Popup trigger={<DeleteProduct className="deleteicon"/>} modal>
-                {close => (
-                <div className="product-popup">
-            
-                    <div className="header">
-                        <p>Are you sure you want to delete '{props.products[index].name}'?</p>
+    if(props.products.length > 0){
+        return props.products.map((products, index) =>{
+            return(
+              <div className="product-container"  key={index}>
+                  <p>{props.products[index].name}</p>
+                  <p>{props.products[index].genre}</p>
+                  <p>KEY:{props.products[index].beatkey} &nbsp;&nbsp; BPM:{props.products[index].bpm}</p>
+                  <Popup trigger={<DeleteProduct className="deleteicon"/>} modal>
+                    {close => (
+                    <div className="product-popup">
+                
+                        <div className="header">
+                            <p>Are you sure you want to delete '{props.products[index].name}'?</p>
+                        </div>
+                        <div className="content">
+                            
+                        </div>
+                        <div className="actions">
+                            <button className="button" onClick={() => {DeleteBeat(props.products[index].id); close();}}>Yes</button>
+                            <button className="button" onClick={() => {console.log("modal closed "); close();}}>No</button>
+                        </div>
                     </div>
-                    <div className="content">
-                        
+                    )}
+                </Popup>
+                  <Popup trigger={<EditProduct className="editicon"/>} modal>
+                    {close => (
+                    <div className="product-popup">
+                
+                        <div className="header"><p>Editing '{props.products[index].name}'!</p></div>
+                        <div className="content">
+                        <input 
+                            id="newname"
+                            type="text" 
+                            name="beatname"
+                            defaultValue={props.products[index].name}
+                            required
+                        />
+                        <textarea 
+                            id="newdescription" 
+                            name="description" 
+                            rows="5" 
+                            cols="30" 
+                            defaultValue={props.products[index].name}
+                            required
+                        />
+                        </div>
+                        <div className="actions">
+                            <button className="button" onClick={() => {
+                                UpdateBeat(
+                                props.products[index].id,
+                                document.getElementById("newname").value, 
+                                document.getElementById("newdescription").value); 
+                                close();}}>
+                                Submit
+                            </button>
+                            <button className="button" onClick={() => {console.log("modal closed "); close();}}>Close</button>
+                        </div>
                     </div>
-                    <div className="actions">
-                        <button className="button" onClick={() => {DeleteBeat(props.products[index].id); close();}}>Yes</button>
-                        <button className="button" onClick={() => {console.log("modal closed "); close();}}>No</button>
-                    </div>
-                </div>
-                )}
-            </Popup>
-              <Popup trigger={<EditProduct className="editicon"/>} modal>
-                {close => (
-                <div className="product-popup">
-            
-                    <div className="header"><p>Editing '{props.products[index].name}'!</p></div>
-                    <div className="content">
-                    <input 
-                        id="newname"
-                        type="text" 
-                        name="beatname"
-                        defaultValue={props.products[index].name}
-                        required
-                    />
-                    <textarea 
-                        id="newdescription" 
-                        name="description" 
-                        rows="5" 
-                        cols="30" 
-                        defaultValue={props.products[index].name}
-                        required
-                    />
-                    </div>
-                    <div className="actions">
-                        <button className="button" onClick={() => {
-                            UpdateBeat(
-                            props.products[index].id,
-                            document.getElementById("newname").value, 
-                            document.getElementById("newdescription").value); 
-                            close();}}>
-                            Submit
-                        </button>
-                        <button className="button" onClick={() => {console.log("modal closed "); close();}}>Close</button>
-                    </div>
-                </div>
-                )}
-            </Popup>
-          </div>
-        )
-      })
+                    )}
+                </Popup>
+              </div>
+            )
+          }
+        );
+    }else{
+        return <p>No products to be displayed...</p>
+    }
 }
 
 /**
