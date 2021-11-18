@@ -15,7 +15,7 @@ export default class Home extends Component{
 
   render(){
     return(
-      <div className="home-wrapper">
+      <div className="home-wrapper" id="home-wrapper">
         <ul className="home-list">
           <div>
             <img src={logo} className="home-logo" alt="Beatcave Logo"/>

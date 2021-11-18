@@ -2,7 +2,7 @@
   position: fixed;
   display: flex;
   justify-content: center;
-  height: 94%;
+  height: 100%;
   width: 100%;
   overflow: scroll;
 }
@@ -23,13 +23,13 @@
   text-align: center;
 }
 
-.home-picture{
-  width: 40%
+.home-picture {
+  width: 40%;
 }
 
 /*Home view Responsivenss*/
 @media only screen and (max-width: 500px) {
-  .home-picture{
-    width: 70%
+  .home-picture {
+    width: 70%;
   }
 }

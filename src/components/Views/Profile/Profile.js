@@ -11,7 +11,6 @@ import {uploadFile} from 'react-s3';
 function UserDisplay(props){
 
     const [selectedFile, setSelectedFile] = useState(null);
-
     const handleFileInput = (e) => {
         setSelectedFile(e.target.files[0]);
     }

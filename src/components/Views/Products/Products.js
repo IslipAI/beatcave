@@ -1,6 +1,9 @@
 import React, {Component, useState} from 'react';
 import {uploadFile} from 'react-s3';
+import Popup from 'reactjs-popup';
 import '../Products/Products.css';
+import {ReactComponent as DeleteProduct} from '../../Icons/delete_black_24dp.svg';
+import {ReactComponent as EditProduct} from '../../Icons/edit_black_24dp.svg';
 
 
 /**
@@ -85,8 +88,54 @@ async function PostBeat(id, productname, beatkey, genre,
         error => {
           console.log(error)
         }
-      )
+      );
 
+}
+
+/**
+ * Function calls API to delete beat.
+ * @param {*} id - beat id
+ */
+async function DeleteBeat(id){
+    const requestOptions = {
+        method: 'DELETE',
+        headers: 
+        { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            id: id,
+        })
+      }
+
+      await fetch('http://www.beatcaveapi.com/beats/deletebeat/', requestOptions)
+      .then(response => console.log(response))
+      .then(window.setTimeout(window.location.reload(false), 500))
+      .catch(error => {
+          console.log(error)
+        }
+      )
+    //console.log(id);
+}
+
+async function UpdateBeat(id, name, description){
+    console.log(name);
+    const requestOptions = {
+        method: 'PUT',
+        headers: 
+        { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+            id: id,
+            name: name, 
+            description: description,
+        })
+      }
+
+      await fetch('http://localhost:8000/beats/updatebeat/', requestOptions)
+      .then(response => console.log(response))
+      .then(window.setTimeout(window.location.reload(false), 500))
+      .catch(error => {
+          console.log(error)
+        }
+      )
 }
 
 /**
@@ -244,7 +293,6 @@ function EventUploadForm(props){
               />
             <br/>
             <select id="starttime" name="starttime" onChange={props.handleChange}>
-                <option value="" disabled selected hidden>Choose Start Time</option>
                 <option value="8AM">8AM</option>
                 <option value="9AM">9AM</option>
                 <option value="10AM">10AM</option>
@@ -265,7 +313,6 @@ function EventUploadForm(props){
             </select>
             <br/>
             <select id="endtime" name="endtime" onChange={props.handleChange}>
-            <option value="" disabled selected hidden>Choose End Time</option>
                 <option value="8AM">8AM</option>
                 <option value="9AM">9AM</option>
                 <option value="10AM">10AM</option>
@@ -329,8 +376,60 @@ function UploadedProductsDisplay(props){
           <div className="product-container"  key={index}>
               <p>{props.products[index].name}</p>
               <p>{props.products[index].genre}</p>
-              <p>{props.products[index].beatkey}</p>
-              <p>BPM: {props.products[index].bpm}</p>
+              <p>KEY:{props.products[index].beatkey} &nbsp;&nbsp; BPM:{props.products[index].bpm}</p>
+              <Popup trigger={<DeleteProduct className="deleteicon"/>} modal>
+                {close => (
+                <div className="product-popup">
+            
+                    <div className="header">
+                        <p>Are you sure you want to delete '{props.products[index].name}'?</p>
+                    </div>
+                    <div className="content">
+                        
+                    </div>
+                    <div className="actions">
+                        <button className="button" onClick={() => {DeleteBeat(props.products[index].id); close();}}>Yes</button>
+                        <button className="button" onClick={() => {console.log("modal closed "); close();}}>No</button>
+                    </div>
+                </div>
+                )}
+            </Popup>
+              <Popup trigger={<EditProduct className="editicon"/>} modal>
+                {close => (
+                <div className="product-popup">
+            
+                    <div className="header"><p>Editing '{props.products[index].name}'!</p></div>
+                    <div className="content">
+                    <input 
+                        id="newname"
+                        type="text" 
+                        name="beatname"
+                        defaultValue={props.products[index].name}
+                        required
+                    />
+                    <textarea 
+                        id="newdescription" 
+                        name="description" 
+                        rows="5" 
+                        cols="30" 
+                        defaultValue={props.products[index].name}
+                        required
+                    />
+                    </div>
+                    <div className="actions">
+                        <button className="button" onClick={() => {
+                            UpdateBeat(
+                            props.products[index].id,
+                            document.getElementById("newname").value, 
+                            document.getElementById("newdescription").value); 
+                            close();}}>
+                            Submit
+                        </button>
+                        <button className="button" onClick={() => {console.log("modal closed "); close();}}>Close</button>
+                    </div>
+                </div>
+                )}
+            </Popup>
           </div>
         )
       })
@@ -343,6 +442,7 @@ export default class Products extends Component{
     constructor(props){
         super(props);
         this.state = {
+            isLoaded: false,
             userid: null,
             products: [], 
             admin: false,
@@ -410,7 +510,7 @@ export default class Products extends Component{
                 access: result.elements[0].access,
                 secret: result.elements[0].private,
             });
-            console.log(this.state.directory);
+            //console.log(this.state.directory);
         })
     }
 
@@ -503,7 +603,10 @@ export default class Products extends Component{
             secretAccessKey: secret,
         }
 
-        uploadFile(file, config)
+        if(file == null){
+            //console.log("File cannot be null!");
+        }else{
+            uploadFile(file, config)
             .then(async function(data){
                 //console.log(data.location);
                 await PostBeat(userid, beatname, 
@@ -511,7 +614,8 @@ export default class Products extends Component{
                     description, data.location.toString(), price);
             })
             .catch(err => console.error(err))
-        
+        }
+      
     }
 
     /**

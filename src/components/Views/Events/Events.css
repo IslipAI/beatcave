@@ -1,6 +1,15 @@
-.events {
+.events-wrapper {
+  position: fixed;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+}
+
+.eventsTop h1 {
+  margin: 0px;
 }
 
 .eventsTop {

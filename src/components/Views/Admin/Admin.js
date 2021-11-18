@@ -10,7 +10,7 @@ import '../Admin/Admin.css';
  * @returns Graph display.
  */
 function Chart(props){
-    console.log(props.salesData);
+    //console.log(props.salesData);
     return(
         <div className="chart-container">
         <select className="timeline" id="timeline" onChange={props.setChartTimeLine}>
@@ -132,6 +132,10 @@ export default class Admin extends PureComponent {
         this.fetchSalesData();
     }
 
+    /**
+     * Components render function.
+     * @returns Rendered view.
+     */
   render() {
     const {dailySalesData, weeklySalesData, yearlySalesData, isLoaded, chartTimeLine} = this.state;
     if(isLoaded){

@@ -109,6 +109,9 @@ function Purchase(props) {
     );
   }
 
+  /**
+   * Purchases component.
+   */
 export default class Purchases extends Component {
     constructor(props){
         super(props);
@@ -177,7 +180,7 @@ export default class Purchases extends Component {
         const {purchases, isLoaded} = this.state;
         if(isLoaded){
             return (
-                <div>
+                <div className="purchases-wrapper">
                     <div className='purchasesContainer'>
                         <Pagination
                             data={purchases}
@@ -191,7 +194,7 @@ export default class Purchases extends Component {
             )
         }else{
             return (
-                <div>
+                <div className="purchases-wrapper">
                     <div className='purchasesTitle'>
                         <h1>Loading...</h1>
                     </div>

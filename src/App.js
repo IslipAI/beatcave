@@ -17,7 +17,9 @@ import Signout from './components/Views/Signout/Signout';
 import Navbar from './components/Navbar/Navbar.js';
 import Payment from './components/Views/Payment/Payment.js'
 
-//Main App Component
+/**
+ * Applications root component.
+ */
 export default class App extends Component {
   constructor(){
     super();
@@ -64,52 +66,54 @@ export default class App extends Component {
       )
     }else{
       return (
-        <div className="wrapper">
+        <div className="wrapper" id="wrapper">
           <BrowserRouter>
             <Navbar/>
-            <Switch>
-            <Route
-              exact path="/"
-              render={() => {
-                  return (
-                    <Redirect to="/home" />
-                  )
-                }}
-              />
-              <Route path="/home">
-                <Home/>
-              </Route>
-              <Route path="/beats">
-                <Beats/>
-              </Route>
-              <Route path="/events">
-                <Events/>
-              </Route>
-              <Route path="/about">
-                <About/>
-              </Route>
-              <Route path="/profile">
-                <Profile/>
-              </Route>
-              <Route path="/products">
-                <Products/>
-              </Route>
-              <Route path="/purchases">
-                <Purchases/>
-              </Route>
-              <Route path="/cart">
-                <Cart/>
-              </Route>
-              <Route path="/admin">
-                <Admin/>
-              </Route>
-              <Route path="/signout">
-                <Signout/>
-              </Route>
-              <Route path="/payment">
-                <Payment/>
-              </Route>
-            </Switch>
+            <div id="page-wrap" className="page-wrap">
+              <Switch>
+              <Route
+                exact path="/"
+                render={() => {
+                    return (
+                      <Redirect to="/home" />
+                    )
+                  }}
+                />
+                <Route path="/home">
+                  <Home/>
+                </Route>
+                <Route path="/beats">
+                  <Beats/>
+                </Route>
+                <Route path="/events">
+                  <Events/>
+                </Route>
+                <Route path="/about">
+                  <About/>
+                </Route>
+                <Route path="/profile">
+                  <Profile/>
+                </Route>
+                <Route path="/products">
+                  <Products/>
+                </Route>
+                <Route path="/purchases">
+                  <Purchases/>
+                </Route>
+                <Route path="/cart">
+                  <Cart/>
+                </Route>
+                <Route path="/admin">
+                  <Admin/>
+                </Route>
+                <Route path="/signout">
+                  <Signout/>
+                </Route>
+                <Route path="/payment">
+                  <Payment/>
+                </Route>
+              </Switch>
+            </div>
           </BrowserRouter>
         </div>
       );

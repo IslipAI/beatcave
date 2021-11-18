@@ -1,10 +1,10 @@
 .about-wrapper {
   position: fixed;
-  display: flex;
   justify-content: center;
-  height: 94%;
+  height: 100%;
   width: 100%;
   overflow: scroll;
+  text-align: center;
 }
 
 .about-list {
@@ -20,6 +20,8 @@
 }
 
 .about-content-wrapper {
+  margin: auto;
+  text-align: center;
   width: 500px;
   height: 500px;
 }

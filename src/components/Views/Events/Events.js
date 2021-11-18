@@ -100,7 +100,7 @@ export default class Events extends Component{
    */
   render(){
       return(
-          <div className="events">
+          <div className="events-wrapper">
               <div className="eventsTop">
                 <h1>Events</h1>
                 <h4>Come meet everyone at beatcave and more!</h4>

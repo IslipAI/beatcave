@@ -103,14 +103,10 @@ export default class Beats extends Component{
     const {beats} = this.state;
     return(
       <div className="beats-wrapper">
-        <div className="beats-left-wrapper">
-        </div>
-        <div className="beats-right-wrapper">
             <ul>
               <h1 className="beats-title">Welcome to BeatCave</h1>
               {this.RenderBeats(beats)}
             </ul>
-        </div>
       </div>
     )
   }

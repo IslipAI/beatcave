@@ -1,6 +1,9 @@
 .products-wrapper {
+  position: fixed;
   display: flex;
   flex-direction: row;
+  width: 100%;
+  height: 100%;
 }
 
 .products-right-wrapper {
@@ -16,6 +19,7 @@
 }
 
 .product-container {
+  position: relative;
   width: 50%;
   height: auto;
   margin: auto;
@@ -54,26 +58,67 @@
 }
 
 .beatform {
-    align-self: center;
-  }
-  
-  .eventform input {
-    margin: 1%;
-    width: 25%;
-  }
-  
-  .eventform select {
-    margin: 1%;
-    width: 26%;
-  }
-  
-  .eventform textarea {
-    margin: 1%;
-    width: 25%;
-  }
-  
-  .eventform button {
-    margin: 1%;
-    width: 25%;
-  }
-  
+  align-self: center;
+}
+
+.eventform input {
+  margin: 1%;
+  width: 25%;
+}
+
+.eventform select {
+  margin: 1%;
+  width: 26%;
+}
+
+.eventform textarea {
+  margin: 1%;
+  width: 25%;
+}
+
+.eventform button {
+  margin: 1%;
+  width: 25%;
+}
+
+.product-popup {
+  text-align: center;
+  padding: 1%;
+  background-color: black;
+}
+
+.product-popup p {
+  color: white;
+}
+
+.deleteicon {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.deleteicon:hover {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.deleteicon:active {
+  background-color: black;
+}
+
+.editicon {
+  position: absolute;
+  bottom: 10px;
+  right: 40px;
+}
+
+.editicon:hover {
+  border-width: 2px;
+  border-style: solid;
+  border-color: black;
+}
+
+.editicon:active {
+  background-color: black;
+}

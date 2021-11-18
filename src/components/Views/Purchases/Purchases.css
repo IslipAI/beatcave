@@ -1,3 +1,9 @@
+.purchases-wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
 .purchases {
   width: 100%;
   height: auto;

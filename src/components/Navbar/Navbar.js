@@ -36,6 +36,11 @@ function DropdownIcon(props){
     );
 }
 
+/**
+ * Function creates dropdown structure for admin or default user.
+ * @param {*} props 
+ * @returns website dropdown.
+ */
 function Dropdown(props) {
     //console.log(props.adminStatus)
     if(props.adminStatus === true){
@@ -100,7 +105,9 @@ function Dropdown(props) {
 }
 
 
-
+/**
+ * Navbar component.
+ */
 class Navbar extends Component{
     constructor(props){
         super(props);
@@ -109,6 +116,8 @@ class Navbar extends Component{
             showDropdown: false,
             admin: false,
         }
+
+        this.closeDropdown= this.closeDropdown.bind(this)
     }
 
 
@@ -151,7 +160,14 @@ class Navbar extends Component{
 
      componentDidMount(){
         this.checkAdmin();
+        document.getElementById("page-wrap").addEventListener("click", this.closeDropdown);
     }   
+
+    closeDropdown(){
+        this.setState({ 
+            showDropdown: false,
+        });
+    }
     
     render(){
         return(
