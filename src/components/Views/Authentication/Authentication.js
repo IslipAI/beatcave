@@ -23,7 +23,7 @@ async function callLogin(email, password){
   var token = await fetch('https://www.beatcaveapi.com/users/login/', requestOptions)
       .then(response => response.json())
       .then(data => {
-        //console.log(data.elements)
+        console.log(data.elements)
         return data.elements;
       })
       .catch(error => {
@@ -85,6 +85,17 @@ async function callRegister(email, password, firstname,
     return token;
 }
 
+function showInvalidPopup() {
+  document.getElementById("popup").style.visibility = "visible";
+  setTimeout(hideInvalidPopup, 3000);
+}
+
+function hideInvalidPopup() {
+  document.getElementById("popup").style.visibility = "hidden";
+}
+
+
+
 /**
  * Authentication Component.
  */
@@ -139,6 +150,8 @@ export default class Authentication extends React.Component{
     if(token !== "User Doesn't Exist"){
         sessionStorage.setItem('token', JSON.stringify(token));
         this.props.setLoginStatus();
+    }else{
+      showInvalidPopup();
     }
   }
 

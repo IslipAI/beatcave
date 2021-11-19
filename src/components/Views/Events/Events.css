@@ -6,6 +6,7 @@
   height: 100%;
   width: 100%;
   top: 0px;
+  overflow-y: scroll;
 }
 
 .eventsTop h1 {
@@ -13,22 +14,20 @@
 }
 
 .eventsTop {
+  position: relative;
+  height: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.eventsBottom {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
 .eventContainer {
+  white-space: pre-line;
   background-color: black;
   position: relative;
   padding: 3%;
-  width: 15%;
+  width: 20%;
+  margin-bottom: 2%;
   border-radius: 25px;
   transition: width 0.5s;
   -webkit-transition: width 0.5s;
@@ -37,7 +36,7 @@
 .eventContainer:hover {
   background-color: black;
   filter: brightness(1.2);
-  width: 16%;
+  width: 22%;
 }
 
 .eventContainer h4 {
@@ -62,4 +61,20 @@
 
 .add-cart-events:active {
   background-color: white;
+}
+
+@media only screen and (max-width: 1400px) {
+  .eventContainer {
+    width: 30%;
+  }
+}
+@media only screen and (max-width: 1000px) {
+  .eventContainer {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .eventContainer {
+    width: 70%;
+  }
 }

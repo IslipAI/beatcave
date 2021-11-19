@@ -23,17 +23,29 @@ const CARD_OPTIONS = {
 	}
 }
 
+/**
+ * Function gets cart total.
+ * @returns cart total 
+ */
 function getCartTotal(){
     var cartTotal = sessionStorage.getItem('cartTotal');
     return cartTotal;
 }
 
+/**
+ * Function clears cart after checkout.
+ */
 function clearCart(){
     sessionStorage.removeItem('cartTotal');
     sessionStorage.removeItem('beatsCart');
     sessionStorage.removeItem('eventsCart');
 }
 
+
+/**
+ * Function creates order in db.
+ * @param {*} total - cart total
+ */
 async function postToHistory(total){
     var userId = await getUserId();
     var beatIds = await getBeatIds();
@@ -70,6 +82,10 @@ async function postToHistory(total){
     }
 }
 
+/**
+ * Function gets user id.
+ * @returns - user id
+ */
 function getUserId(){
     //Returns stored user id.
     const storedToken = sessionStorage.getItem('token');
@@ -83,14 +99,27 @@ function getUserId(){
     }
 }
 
+/**
+ * Gets beatids from storage.
+ * @returns - array of beat ids.
+ */
 function getBeatIds(){
     return sessionStorage.getItem('beatsCart');
 }
 
+/**
+ * Function gets event ids from storage.
+ * @returns - array of event ids.
+ */
 function getEventIds(){
     return sessionStorage.getItem('eventsCart');
 }
 
+
+/**
+ * Creates payment form logic.
+ * @returns - returns payment form.
+ */
 export default function PaymentForm(){
     const [success, setSuccess] = useState(false);
     const stripe = useStripe();

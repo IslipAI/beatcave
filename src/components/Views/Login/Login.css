@@ -89,3 +89,18 @@
     width: 65%;
   }
 }
+
+.popup {
+  align-self: center;
+  visibility: hidden;
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  padding: 20px 20px;
+  position: relative;
+  z-index: 20;
+  top: 20%;
+  margin: auto;
+}

@@ -14,6 +14,7 @@ export default function Login(props){
          <img src={logo} className="logo-login-register" alt="Beatcave Logo"/>
         <div className="login-form-wrapper">
         <form onSubmit={props.handleSubmit}>
+        <span className="popup" id="popup">Invalid Credentials!</span>
           <h3 className="login-text">Log In</h3>
           <div>
             <input 

@@ -81,7 +81,7 @@ function Purchase(props) {
           ))}
         </div>
     
-        <div className="pagination">
+        <div className="pagination" id="pagination">
           <button
             onClick={goToPreviousPage}
             className={`prev ${currentPage === 1 ? 'disabled' : ''}`}
@@ -172,7 +172,6 @@ export default class Purchases extends Component {
         var id = this.getUserId();
         this.fetchAPI(id)
     }
-
 
     /**
      * Components render method.

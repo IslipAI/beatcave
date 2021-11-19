@@ -32,12 +32,18 @@ export default class App extends Component {
   }
 
 
+  /**
+   * Function sets logged in value.
+   */
   setLoginStatus(){
     this.setState({
       loggedInStatus: "LOGGED_IN"
     })
   }
 
+  /**
+   * Function checks if user is logged in.
+   */
   checkLoginStatus(){
     const storedToken = sessionStorage.getItem('token');
     //console.log(storedToken)
@@ -52,11 +58,18 @@ export default class App extends Component {
     }
   }
 
+  /**
+   * Check login status before render.
+   */
   componentDidMount(){
     this.checkLoginStatus();
   }
 
 
+  /**
+   * Apps render method.
+   * @returns Beatcave app
+   */
   render(){
     if(this.state.loggedInStatus === "NOT_LOGGED_IN"){
       return(

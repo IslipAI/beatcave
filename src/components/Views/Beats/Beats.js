@@ -27,6 +27,7 @@ function AddToCart(id){
   }
 }
 
+
 /**
  * Beats view component.
  */
@@ -95,7 +96,6 @@ export default class Beats extends Component{
               className="beats-audio-player"
               key={index}
               src={soundObj.mp3path}
-              onPlay={e => console.log("Playing!")}
             />
           </div>
         </div>

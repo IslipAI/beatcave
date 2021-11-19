@@ -2,6 +2,10 @@ import React from 'react';
 import './About.css';
 import beatcaveBlack from '../../Images/beatcave_black_background_white_text.jpg';
 
+/**
+ * The About page.
+ * @returns About Page
+ */
 export default function About() {
   return(
     <div className="about-wrapper">
