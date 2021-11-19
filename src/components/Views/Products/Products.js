@@ -166,6 +166,7 @@ function BeatUploadForm(props){
                 <option value="Dubstep">Dubstep</option>
                 <option value="Trance">Trance</option>
                 <option value="Garage">Garage</option>
+                <option value="Techno">Techno</option>
             </select>
             <br/>
             <select id="Key" name="key" onChange={props.handleChange}>
@@ -387,7 +388,7 @@ function UploadForm(props){
  * @returns Product display.
  */
 function UploadedProductsDisplay(props){
-    console.log(props.products[0])
+    //console.log(props.products[0])
     if(props.products.length > 0){
         return props.products.map((products, index) =>{
             return(

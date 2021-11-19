@@ -14,9 +14,11 @@ export default function About() {
       <img src={beatcaveBlack} className="about-beatcave-logo" alt="Beatcave Logo"/>
       <div className="about-content-wrapper">
         <h4>ABOUT US</h4>
+        <div>
         <p>Beatcave started with the vision of bringing producers out of their bedrooms and into community. 
           Our first events centered around beat deconstructions and critiques from industry professionals. 
           What started for producers quickly turned into a community for engineers and artists as well.</p>
+        </div>
       </div>
     </ul>
   </div>

@@ -136,7 +136,6 @@ export default class Purchases extends Component {
                     purchases: result.elements
                 });
                 //console.log(result.elements);
-    
             },(error) =>{
                 this.setState({
                     isLoaded: true, 

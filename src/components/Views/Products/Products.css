@@ -85,10 +85,25 @@
   text-align: center;
   padding: 1%;
   background-color: black;
+  border-radius: 2%;
 }
 
 .product-popup p {
   color: white;
+}
+
+.product-popup button {
+  width: 100%;
+  height: 30px;
+  border-radius: 10%;
+  border-color: #ffffff;
+  margin-top: 10px;
+  color: #ffffff;
+  background-color: #000000;
+}
+
+.product-popup button:hover {
+  filter: brightness(1.2);
 }
 
 .deleteicon {

@@ -13,6 +13,10 @@
   border-color: black;
 }
 
+.purchases h4{
+ margin: 2%;
+}
+
 .purchasesContainer {
   text-align: center;
   position: relative;
@@ -48,7 +52,7 @@ small {
 
 .paginationItem {
   background: #fff;
-  border: 2px solid #666;
+  border: 2px solid black;
   padding: 10px 15px;
   border-radius: 50%;
   height: 45px;

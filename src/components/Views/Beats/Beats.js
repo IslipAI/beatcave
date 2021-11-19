@@ -3,6 +3,7 @@ import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
 import '../Beats/Beats.css';
 import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_black_24dp.svg';
+import Popup from 'reactjs-popup';
 
 
 /**
@@ -88,7 +89,28 @@ export default class Beats extends Component{
             <p>{soundObj.name} - {soundObj.artistname}</p>
             <p>{soundObj.beatkey} ${soundObj.price}</p>
             <p>{soundObj.description}</p>
-            <AddCart className="add-cart-beats" onClick={() => AddToCart(soundObj.id)}/>
+            <Popup 
+            trigger={<AddCart 
+            className="add-cart-beats" 
+            onClick={() => AddToCart(soundObj.id)}/>} modal>
+                    {close => (
+                    <div className="cart-popup">
+                      <h3>Add Beat to Cart?</h3>
+                      <div className="actions">
+                            <button 
+                              className="cart-popup-button" 
+                              onClick={() => {AddToCart(soundObj.id); close();}}>
+                              Yes
+                            </button>
+                            <button 
+                              className="cart-popup-button" 
+                              onClick={() => {close();}}>
+                              No
+                            </button>
+                        </div>
+                    </div>
+                    )}
+            </Popup>
           </div>
           <div className="beat-player-wrapper">
             <AudioPlayer

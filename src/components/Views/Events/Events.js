@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import '../Events/Events.css';
 import {ReactComponent as AddCart} from '../../Icons/add_shopping_cart_white_24dp.svg';
+import Popup from 'reactjs-popup';
 
 
 /**
@@ -20,7 +21,28 @@ function EventsDisplay(props){
             <p>{events.date.split('T')[0]}</p>
             <p>{events.starttime} - {events.endtime}</p>
             <h4>${events.price}</h4>
-            <AddCart className="add-cart-events" onClick={()=> AddToCart(events.id)}/>
+            <Popup 
+            trigger={<AddCart 
+            className="add-cart-events" 
+            onClick={()=> AddToCart(events.id)}/>} modal>
+                    {close => (
+                    <div className="cart-popup">
+                      <h3>Add Ticket to Cart?</h3>
+                      <div className="actions">
+                            <button 
+                              className="cart-popup-button" 
+                              onClick={() => {AddToCart(events.id); close();}}>
+                              Yes
+                            </button>
+                            <button 
+                              className="cart-popup-button" 
+                              onClick={() => {close();}}>
+                              No
+                            </button>
+                        </div>
+                    </div>
+                    )}
+            </Popup>
         </div>
       )
     })
