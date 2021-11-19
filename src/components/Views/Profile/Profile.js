@@ -98,6 +98,7 @@ async function updateUser(id, firstname, lastname, artistname, phonenumber, prof
 
       await fetch('https://www.beatcaveapi.com/users/updateuser/', requestOptions)
         .then(response => console.log(response))
+        .then(setTimeout(window.location.reload(false) , 1000))
         .catch(error => {
             console.log(error)
           }

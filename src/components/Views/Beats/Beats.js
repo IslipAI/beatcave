@@ -28,7 +28,7 @@ function AddToCart(id){
 }
 
 /**
- * Beats class.
+ * Beats view component.
  */
 export default class Beats extends Component{
   constructor(props){
@@ -36,7 +36,8 @@ export default class Beats extends Component{
     this.state = {
         error: null, 
         isLoaded: false, 
-        beats: []
+        beats: [], 
+        isPlaying: false,
     };
   }
 
@@ -57,6 +58,7 @@ export default class Beats extends Component{
     .catch((error) =>{
       this.setState({
         isLoaded: true, 
+        beats: [],
         error
       });
     });
@@ -70,6 +72,11 @@ export default class Beats extends Component{
   }
 
 
+  /**
+   * Function renders list of beats.
+   * @param {*} beats - collection of beats.
+   * @returns list of beats.
+   */
   RenderBeats = (beats) => {
     //console.log(beats)
     return beats.map((soundObj, index) =>{
@@ -77,17 +84,18 @@ export default class Beats extends Component{
         <div className="beat-wrapper"  key={index}>
           <div className="beat-content-wrapper">
             <img src={soundObj.profilepicturepath} className="beats-profile-picture" alt="Beatseller"/>
-            <p>{soundObj.name}</p>
-            <p>{soundObj.beatkey}</p>
+            <p>{soundObj.name} - {soundObj.artistname}</p>
+            <p>{soundObj.beatkey} ${soundObj.price}</p>
             <p>{soundObj.description}</p>
             <AddCart className="add-cart-beats" onClick={() => AddToCart(soundObj.id)}/>
           </div>
           <div className="beat-player-wrapper">
             <AudioPlayer
+              id = {1}
               className="beats-audio-player"
               key={index}
               src={soundObj.mp3path}
-              onPlay={e => console.log("onPlay")}
+              onPlay={e => console.log("Playing!")}
             />
           </div>
         </div>

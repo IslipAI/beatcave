@@ -17,12 +17,15 @@ function Chart(props){
             <option value="daily">Daily</option>
             <option value="weekly">Weekly</option>
             <option value="yearly">Yearly</option>
-        </select>      
+        </select>  
+        <h2>Beats Sold</h2>    
         <BarChart width={700} height={300} data={props.salesData} className="barchart">
           <Bar dataKey="productSold" fill="black" />
           <XAxis dataKey="name" />
           <YAxis dataKey="productSold"/>
         </BarChart>
+
+        <h2>Sales</h2>
         <LineChart width={700} height={300} data={props.salesData} className="linechart">
             <Line dataKey="totalSales" fill="black" />
             <XAxis dataKey="name" />
@@ -63,6 +66,8 @@ function Charts(props){
     }
 }
 
+
+
 export default class Admin extends PureComponent {
     constructor() {
         super();
@@ -76,6 +81,7 @@ export default class Admin extends PureComponent {
         this.setChartTimeLine = this.setChartTimeLine.bind(this);
       }
 
+    //get weekly sales
     async fetchSalesData(){
         await fetch('https://www.beatcaveapi.com/admin/weeklysales/')
         .then(res => res.json())
@@ -91,6 +97,8 @@ export default class Admin extends PureComponent {
                 });
             }
         )
+
+        //Get yearly sales
         await fetch('https://www.beatcaveapi.com/admin/yearlysales/')
         .then(res => res.json())
         .then((result) => {
@@ -105,6 +113,8 @@ export default class Admin extends PureComponent {
                 });
             }
         )
+
+        //Get daily sales
         await fetch('https://www.beatcaveapi.com/admin/dailysales/')
         .then(res => res.json())
         .then((result) => {
@@ -121,6 +131,10 @@ export default class Admin extends PureComponent {
         )
     }
 
+    /**
+     * Sets the filter for chart timeline.
+     * @param {*} event - user selection on drop down.
+     */
     setChartTimeLine(event){
         //console.log(event.target.value)
         this.setState({
@@ -128,6 +142,9 @@ export default class Admin extends PureComponent {
         });
     }
 
+    /**
+     * Components did mount method sets data.
+     */
     componentDidMount(){
         this.fetchSalesData();
     }

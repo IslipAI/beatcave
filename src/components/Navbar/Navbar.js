@@ -172,7 +172,7 @@ class Navbar extends Component{
     render(){
         return(
             <nav className="navbar-wrapper">
-                <h1 className="logo">BEATCAVE</h1>
+                <h1 className="logo"><a href="/">BeatCave</a></h1>
                 <ul className="main-links">
                     <NavbarLink to="/home" text="HOME"/>
                     <NavbarLink to="/beats" text="BEATS"/>

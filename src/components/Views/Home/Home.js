@@ -8,11 +8,16 @@ import sickNatureTwo from '../../Images/beatcave_sick_nature_two.jpg';
 import sickNatureOne from '../../Images/beatcave_sick_nature_one.jpg';
 import camp from '../../Images/beatcave_camp.jpg';
 
+
+/**
+ * Home Component
+ */
 export default class Home extends Component{
 
-
-
-
+  /**
+   * Components render method.
+   * @returns Home page
+   */
   render(){
     return(
       <div className="home-wrapper" id="home-wrapper">

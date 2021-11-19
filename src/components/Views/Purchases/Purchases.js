@@ -69,6 +69,7 @@ function Purchase(props) {
         let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
         return new Array(pageLimit).fill().map((_, idx) => start + idx + 1);
     };
+
   
     return (
         <div>
@@ -150,7 +151,7 @@ export default class Purchases extends Component {
      * Function decryptes ID from JWT.
      * @returns user id.
      */
-    getUserId(){
+     getUserId(){
         const storedToken = sessionStorage.getItem('token');
         if(storedToken != null){
             var tokenBody = storedToken.split('.')[1];
@@ -172,12 +173,14 @@ export default class Purchases extends Component {
         this.fetchAPI(id)
     }
 
+
     /**
      * Components render method.
      * @returns rendered view.
      */
     render() {
         const {purchases, isLoaded} = this.state;
+
         if(isLoaded){
             return (
                 <div className="purchases-wrapper">

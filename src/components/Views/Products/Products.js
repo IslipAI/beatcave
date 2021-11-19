@@ -387,7 +387,7 @@ function UploadForm(props){
  * @returns Product display.
  */
 function UploadedProductsDisplay(props){
-    //console.log(props.products[0])
+    console.log(props.products[0])
     if(props.products.length > 0){
         return props.products.map((products, index) =>{
             return(
@@ -430,7 +430,7 @@ function UploadedProductsDisplay(props){
                             name="description" 
                             rows="5" 
                             cols="30" 
-                            defaultValue={props.products[index].name}
+                            defaultValue={props.products[index].description}
                             required
                         />
                         </div>
