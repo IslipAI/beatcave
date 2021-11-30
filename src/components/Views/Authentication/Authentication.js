@@ -68,7 +68,7 @@ async function callRegister(email, password, firstname,
   }
 
   //fetch token 
-  var token = await fetch('http://www.beatcaveapi.com/users/register/', requestoptions)
+  var token = await fetch('https://www.beatcaveapi.com/users/register/', requestoptions)
     .then(response => response.json())
     .then(data => {
       //console.log(data.elements);
