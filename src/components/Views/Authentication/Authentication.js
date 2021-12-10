@@ -23,7 +23,7 @@ async function callLogin(email, password){
   var token = await fetch('https://www.beatcaveapi.com/users/login/', requestOptions)
       .then(response => response.json())
       .then(data => {
-        console.log(data.elements)
+        //console.log(data.elements)
         return data.elements;
       })
       .catch(error => {
@@ -76,7 +76,7 @@ async function callRegister(email, password, firstname,
     })
     .catch(
       error => {
-        console.log(error)
+        //console.log(error)
         return "User Doesn't Exist"
       }
     )

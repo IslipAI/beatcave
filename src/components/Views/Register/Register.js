@@ -8,6 +8,20 @@ import logo from '../../Images/BEATCAVE_WHITE_180.png';
  * @returns registration form.
  */
 export default function Registration(props){
+
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+  if(dd<10){
+          dd='0'+dd
+      } 
+      if(mm<10){
+          mm='0'+mm
+      } 
+
+  today = yyyy+'-'+mm+'-'+dd;
+
     return(
       <div className="register-wrapper">
         <img src={logo} className="logo-login-register" alt="Beatcave logo"/>
@@ -52,7 +66,8 @@ export default function Registration(props){
               />
               <br/>
               <input 
-                type="text" className="register-phone-input" 
+                type="number" 
+                className="register-phone-input" 
                 placeholder="Phone" 
                 name="phonenumber"
                 value={props.phonenumber}
@@ -65,6 +80,7 @@ export default function Registration(props){
                 name="birthdate"
                 value={props.birthdate}
                 onChange={props.handleChange}
+                max={today}
                 required
               />
               <br/>
